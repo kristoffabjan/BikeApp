@@ -28,8 +28,9 @@ Route::get('/index', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+Route::get('/profile/{user}', [ProfileController::class, 'userProfile'])->name('profile.user');
 
+Route::get('/home', [BikeController::class, 'index']);
 Route::get('/', [BikeController::class, 'index'])->name('home');
 Route::get('/newBike', [BikeController::class, 'new_bike'])->name('addNewBike');
 Route::post('/newBike', [BikeController::class, 'store']);

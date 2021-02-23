@@ -4,8 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 d-flex-col">
-           <p>Profile</p>
-           <h1>Hello</h1>
+           <h2>Username: {{$user->name}}</h2>
+           @foreach ($bikes as $bike)
+               <h3>{{$bike->model}}</h3>
+           @endforeach
 
            
         </div>

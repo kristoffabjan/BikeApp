@@ -12,7 +12,7 @@
             @foreach($bikes as $bike)
                 <div class=" card mb-4 d-flex-column pl-2">
                     <div class="pt-2 pb-2">
-                        <a href="" class="font-weight-bold text-dark mb-2 mr-2">Added by: {{$bike->user->name}}</a><span class="text-secondary text-sm" style="font-size: small;"> {{$bike->created_at->diffForHumans()}}</span>
+                        <a href="{{route('profile', $bike->user)}}" class="font-weight-bold text-dark mb-2 mr-2">Added by: {{$bike->user->name}}</a><span class="text-secondary text-sm" style="font-size: small;"> {{$bike->created_at->diffForHumans()}}</span>
                     </div>
                     <div class="pb-2">
                         <h2>{{$bike->brand}}</h2>

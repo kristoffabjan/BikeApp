@@ -62,7 +62,7 @@
                                     <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('profile') }}">{{ __('Profile') }}</a>
+                                    <a class="nav-link" href="{{route('profile', Auth::user()->id)}}">{{ __('Profile') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
