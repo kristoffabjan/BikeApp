@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts/app');
+    return view('layouts.app');
 });
 
 Route::get('/index', function () {
@@ -30,7 +30,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
 
-Route::get('/home', [BikeController::class, 'index'])->name('home');
+Route::get('/', [BikeController::class, 'index'])->name('home');
 Route::get('/newBike', [BikeController::class, 'new_bike'])->name('addNewBike');
 Route::post('/newBike', [BikeController::class, 'store']);
 

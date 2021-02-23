@@ -11,7 +11,7 @@ class BikeController extends Controller
     public function index(){
         $bikes = Bike::get();
 
-        return view('home',[
+        return view('layouts.home',[
             'bikes' => $bikes
         ]);
     }
