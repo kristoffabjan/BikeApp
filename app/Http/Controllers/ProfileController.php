@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function showProfile(){
-        return view('user/profile');
+        return view('profileView');
     }
 }
