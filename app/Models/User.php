@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function rates(){
         return $this->hasMany(BikeRates::class);
     }
+
+    public function shops(){
+        return $this->hasMany(Shop::class);
+    }
 }

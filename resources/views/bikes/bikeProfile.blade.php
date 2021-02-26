@@ -125,7 +125,7 @@
             @foreach ($rates as $rate)
                 <div>
                     <div class="card mt-3 d-flex-column p-2">
-                        <h3>Posted by: {{$rate->user_id}}</h3>
+                        <h3>Posted by: {{$rate->user->name}}</h3>
                         <ul>
                             <li>Overal rate: {{$rate->stars}}</li>
                             <li>Price-performance:  {{$rate->price_performance}}</li>

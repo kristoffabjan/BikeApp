@@ -46,6 +46,9 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('shops') }}">{{ __('Shops') }}</a>
+                            </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -60,6 +63,9 @@
                         @else
                              <li class="nav-item">
                                     <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('shops') }}">{{ __('Shops') }}</a>
                             </li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{{route('profile.user', Auth::user()->id)}}">{{ __('Profile') }}</a>

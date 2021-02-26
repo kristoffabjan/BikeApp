@@ -20,11 +20,11 @@ class BikeRates extends Model
         'opinion'
     ];
 
-    public function hasUser(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function hasBike(){
+    public function bike(){
         return $this->belongsTo(Bike::class);
     }
 }
