@@ -25,6 +25,7 @@
             <div class="card h-70">
                 <div class="card-body">
                     <ul>
+                        <li><strong> Posted by:</strong> {{$bike->user->name}}</li>
                         <li><strong> Released:</strong> {{$bike->release_date}}</li>
                         <li><strong> Price:</strong> {{$bike->price}}</li>
                         <li><strong> Frame suspension: </strong>{{$bike->suspension_range}}</li>
@@ -120,20 +121,22 @@
             </form>
         </div>
         @endguest
-        <div class="card mt-3 d-flex-column">
+       
             @foreach ($rates as $rate)
                 <div>
-                    <h3>Posted by: {{$rate->user_id}}</h3>
-                    <ul>
-                        <li>Overal rate: {{$rate->stars}}</li>
-                        <li>Price-performance:  {{$rate->price_performance}}</li>
-                        <li>Descending: {{$rate->descend}}</li>
-                        <li>Ascending: {{$rate->ascend}}</li>
-                        <li>Agility: {{$rate->agility}}</li>
-                        <li>Riders opinion: {{$rate->opinion}}</li>
-                    </ul>
+                    <div class="card mt-3 d-flex-column p-2">
+                        <h3>Posted by: {{$rate->user_id}}</h3>
+                        <ul>
+                            <li>Overal rate: {{$rate->stars}}</li>
+                            <li>Price-performance:  {{$rate->price_performance}}</li>
+                            <li>Descending: {{$rate->descend}}</li>
+                            <li>Ascending: {{$rate->ascend}}</li>
+                            <li>Agility: {{$rate->agility}}</li>
+                            <li>Riders opinion: {{$rate->opinion}}</li>
+                        </ul>
+                    </div>
                 </div>
             @endforeach
-        </div>
+        
 </div>
 @endsection
