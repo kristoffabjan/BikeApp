@@ -35,6 +35,9 @@
             </div>
             </div>
         </div>
+        @guest
+         <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> to rate this bike.  </h4>
+         @else
         <h2 class="mb-1">Rate this bike:</h2>
         <div class="card-body">
             <form action="{{route('rate.bike.form')}}" method="post">
@@ -116,7 +119,7 @@
                 </div>    
             </form>
         </div>
-    
+        @endguest
     
 </div>
 @endsection
