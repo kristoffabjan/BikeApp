@@ -38,8 +38,8 @@
         @guest
          <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> to rate this bike.  </h4>
          @else
-        <h2 class="mb-1">Rate this bike:</h2>
-        <div class="card-body">
+        <h2 class="mb-2">Rate this bike:</h2>
+        <div class="card p-3">
             <form action="{{route('rate.bike.form', $bike->id)}}" method="post">
                 @csrf
                 <div class="d-flex-column">
@@ -120,6 +120,20 @@
             </form>
         </div>
         @endguest
-    
+        <div class="card mt-3 d-flex-column">
+            @foreach ($rates as $rate)
+                <div>
+                    <h3>Posted by: {{$rate->user_id}}</h3>
+                    <ul>
+                        <li>Overal rate: {{$rate->stars}}</li>
+                        <li>Price-performance:  {{$rate->price_performance}}</li>
+                        <li>Descending: {{$rate->descend}}</li>
+                        <li>Ascending: {{$rate->ascend}}</li>
+                        <li>Agility: {{$rate->agility}}</li>
+                        <li>Riders opinion: {{$rate->opinion}}</li>
+                    </ul>
+                </div>
+            @endforeach
+        </div>
 </div>
 @endsection

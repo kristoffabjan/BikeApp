@@ -31,7 +31,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/profile/{user}', [ProfileController::class, 'userProfile'])->name('profile.user');
 
-Route::get('/ratebike/{bike}',[BikeRateController::class, 'rate'])->name('rate.bike');
+Route::get('/ratebike/{bike}',[BikeRateController::class, 'index'])->name('rate.bike');
 Route::post('/ratebike/{id}',[BikeRateController::class, 'store'])->name('rate.bike.form');
 
 

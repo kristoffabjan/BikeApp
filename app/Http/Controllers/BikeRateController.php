@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 class BikeRateController extends Controller
 {
     
-    public function rate(Bike $bike)
+
+    public function index(Bike $bike)
     {  
-        #dd($bike);
+        $rates = BikeRates::where('bike_id', $bike->id)
+                ->get();
         return view('bikes.bikeProfile', [
-            'bike'=> $bike
+            'bike'=> $bike,
+            'rates' => $rates
         ]);
     }
 
@@ -27,6 +30,7 @@ class BikeRateController extends Controller
             'agility' => ['required'],
             'opinion' => ['required'],
         ]);
+
 
         $request->user()->rates()->create([
             'bike_id' => $bikeId,
