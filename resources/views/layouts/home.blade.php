@@ -4,10 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 d-flex-col">
-            <div class="  mt-3 mb-4 bg-succes justify-content-center d-flex">
-                <h3 class="mr-4 mt-2 pt-2">Add another bike to the community!</h3>
-                <a class="btn btn-lg btn-success" href="{{route('addNewBike')}}" role="button">Add</a>
-            </div>
+            @guest
+            @else
+                <div class="  mt-3 mb-4 bg-succes justify-content-center d-flex">
+                    <h3 class="mr-4 mt-2 pt-2">Add another bike to the community!</h3>
+                    <a class="btn btn-lg btn-success" href="{{route('addNewBike')}}" role="button">Add</a>
+                </div>
+            @endguest
 
             @foreach($bikes as $bike)
                 <div class=" card mb-4 d-flex-column pl-2">
