@@ -9,11 +9,22 @@ class BikeRates extends Model
 {
     use HasFactory;
 
-    public function user(){
+    protected $table = 'bikeRates';
+    protected $fillable = [
+        'bike_id',
+        'stars' ,
+        'price_performance' ,
+        'descend' ,
+        'ascend',
+        'agility',
+        'opinion'
+    ];
+
+    public function hasUser(){
         return $this->belongsTo(User::class);
     }
 
-    public function bike(){
+    public function hasBike(){
         return $this->belongsTo(Bike::class);
     }
 }

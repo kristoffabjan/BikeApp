@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bike;
+use App\Models\BikeRates;
 use Illuminate\Http\Request;
 
 class BikeRateController extends Controller
@@ -16,7 +17,7 @@ class BikeRateController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $bikeId)
     {
         $this->validate($request, [
             'overal' => ['required'],
@@ -27,27 +28,25 @@ class BikeRateController extends Controller
             'opinion' => ['required'],
         ]);
 
-        
-        $request->user()->bikes()->create([
-            'brand' => $request->brand,
-            'model' => $request->model,
-            'release_date' => $request->release_date,
-            'price' => $request->price,
-            'suspension_range' => $request->suspension_range,
-            'url' => $request->url,
+        $request->user()->rates()->create([
+            'bike_id' => $bikeId,
+            'stars' => $request->overal,
+            'price_performance' => $request->pp,
+            'descend' => $request->descend,
+            'ascend' => $request->ascend,
+            'agility' => $request->agility,
+            'opinion' => $request->opinion,
         ]);
 
-        #Bike::create([
-         #   'brand' => $request->brand,
-          #  'model' => $request->model,
-           # 'release_date' => $request->release_date,
-            #'price' => $request->price,
-            #'suspension_range' => $request->suspension_range,
-            #'user_id' => Auth::id(),
-            #'url' => $request->url,
-            #"updated_at" => $request->date_create,
-            #"created_at" => $request->date_create
-        #]);
+       /*  BikeRates::create([
+            'stars' => $request->overal,
+            'price_performance' => $request->pp,
+            'descend' => $request->descend,
+            'ascend' => $request->ascend,
+            'agility' => $request->agility,
+            'opinion' => $request->opinion,
+        ]); */
+       
 
         return redirect()->route('home');
     }

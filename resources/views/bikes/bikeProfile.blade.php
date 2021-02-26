@@ -40,7 +40,7 @@
          @else
         <h2 class="mb-1">Rate this bike:</h2>
         <div class="card-body">
-            <form action="{{route('rate.bike.form')}}" method="post">
+            <form action="{{route('rate.bike.form', $bike->id)}}" method="post">
                 @csrf
                 <div class="d-flex-column">
 
