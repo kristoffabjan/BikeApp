@@ -39,6 +39,13 @@ class ShopsController extends Controller
         return redirect()->route('shops');
     }
 
+    public function shopProfile(Shop $shop) 
+    {
+        return view('shops.shopProfile', [
+            'shop' => $shop
+        ]);
+    }
+
     public function viewShopsForm()
     {
         return view('shops.shopsForm');

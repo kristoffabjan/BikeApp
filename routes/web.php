@@ -38,6 +38,7 @@ Route::post('/ratebike/{id}',[BikeRateController::class, 'store'])->name('rate.b
 
 Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
 Route::post('/storeShop',[ShopsController::class, 'store'])->name('store.shop');
+Route::get('/shopProfile/{shop}',[ShopsController::class, 'shopProfile'])->name('shop.profile');
 Route::get('/addShop', [ShopsController::class, 'viewShopsForm']);
 
 Route::get('/home', [BikeController::class, 'index']);

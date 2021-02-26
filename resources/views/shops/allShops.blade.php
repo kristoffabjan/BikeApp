@@ -15,7 +15,7 @@
                     <a href="" class="font-weight-bold text-dark mb-2 mr-2">Added by: {{$shop->user->name}}</a><span class="text-secondary text-sm" style="font-size: small;"> {{$shop->created_at->diffForHumans()}}</span>
                 </div>
                 <div class="pb-2">
-                    <h2>{{$shop->name}}</h2>
+                    <h2><a href="{{route('shop.profile', $shop)}}">{{$shop->name}}</a></h2>
                 </div>
                 <div>
                     <a href="">

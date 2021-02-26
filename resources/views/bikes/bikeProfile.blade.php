@@ -37,7 +37,7 @@
             </div>
         </div>
         @guest
-         <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> to rate this bike.  </h4>
+         <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to rate this bike.  </h4>
          @else
         <h2 class="mb-2">Rate this bike:</h2>
         <div class="card p-3">
