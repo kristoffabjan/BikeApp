@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bike;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function showProfile($id){
-        dd($id);
+        #dd($id);
         return view('biker.userProfile',[
             'user' => $id
         ]);
@@ -20,9 +21,12 @@ class ProfileController extends Controller
         #dd($user);
         $bikes = Bike::where('user_id', $user->id)
                 ->get();
+        $shops = Shop::where('user_id', $user->id)
+                ->get();
         return view('user.userProfile', [
             'user' => $user,
-            'bikes' => $bikes
+            'bikes' => $bikes,
+            'shops' => $shops
         ]);
     }
 }
