@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 d-flex-col">
             <div>
-                <form action="{{route('store.shop')}}" method="post">
+                <form action="{{route('store.shop')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label for="brand" class="col-sm-2 col-form-label">Name</label>
@@ -41,6 +41,12 @@
                         <label for="bikeLink" class="col-sm-2 col-form-label">Link to webpage</label>
                         <div class="col-sm-10">
                         <input type="url" class="form-control" id="url" name="url"  placeholder="Url" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="profile_image" class="col-sm-2 col-form-label">Shops profile pic</label>
+                        <div class="col-sm-10">
+                        <input type="file" class="form" id="profile_image" name="profile_image"  placeholder="Image" required>
                         </div>
                     </div>
                     <div class="form-group row">

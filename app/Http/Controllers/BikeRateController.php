@@ -52,6 +52,7 @@ class BikeRateController extends Controller
         ]); */
        
 
-        return redirect()->route('home');
+        return redirect()->route('rate.bike', $bikeId);
+
     }
 }

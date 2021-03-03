@@ -4,29 +4,25 @@
 <div class="container d-flex-column">
         <div class="container pb-4">
             <div class="row gutters">
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-70">
-                <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                                <p>image to be</p>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="card h-70">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img class="img-fluid" src="/storage/shops_profile_images/{{$shop->profile_image}}" alt="">
+                                </div>
                             </div>
-                            <h3>{{$shop->name}} bike shop</h3>
-                        </div>
-                        <div class="about">
-                            <h4>Address: {{$shop->address}}</h4>
-                        </div>
-                        <div class="about">
-                            <h4>Post number: {{$shop->post}}</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div class="card h-70">
-                <div class="card-body">
+                <div class="card-body d-flex-column">
+                    <h3 class="display-4">{{$shop->name}} bike shop</h3>
+                    <h4><strong>Address:</strong> {{$shop->address}}</h4>
+                    <h4><strong>Post number:</strong> {{$shop->post}}</h4>
                     <ul>
                         <li><strong> Posted by:</strong> {{$shop->user->name}}</li>
                         <li><strong> Telephone number:</strong> {{$shop->tel}}</li>

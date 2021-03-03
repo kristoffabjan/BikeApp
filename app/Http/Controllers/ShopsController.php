@@ -24,7 +24,22 @@ class ShopsController extends Controller
             'tel' => ['required'],
             'email' => ['required'],
             'url' => ['required'],
+            'profile_image' => 'mimes:jpeg,jpg,png,gif|nullable|max:1999'
         ]);
+
+        if ($request->hasFile('profile_image') ) {
+            #filename w ext
+            $fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
+            #filename
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            #EXT
+            $extension = $request->file('profile_image')->getClientOriginalExtension();
+            #filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('profile_image')->storeAs('public/shops_profile_images', $fileNameToStore);
+        }else {
+            $fileNameToStore = "noimage.jpg";   
+        }
 
         
         $request->user()->shops()->create([
@@ -34,6 +49,7 @@ class ShopsController extends Controller
             'tel' => $request->tel,
             'email' => $request->email,
             'url' => $request->url,
+            'profile_image' => $fileNameToStore
         ]);
 
         return redirect()->route('shops');

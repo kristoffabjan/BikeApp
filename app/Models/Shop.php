@@ -15,7 +15,8 @@ class Shop extends Model
         'post' ,
         'tel',
         'email',
-        'url'
+        'url',
+        'profile_image'
     ];
 
     public function user()
