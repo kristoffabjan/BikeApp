@@ -4,7 +4,7 @@
 <div class="container d-flex-column">
         <div class="container pb-4">
             <div class="row gutters">
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
             <div class="card h-70">
                 <div class="card-body">
                     <div class="account-settings">
@@ -17,11 +17,13 @@
                         <div class="about">
                             <h4>{{$bike->model}}</h4>
                         </div>
+                        <div class="about d-flex">
+                        </div>
                     </div>
                 </div>
             </div>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div class="card h-70">
                 <div class="card-body">
                     <ul>
@@ -34,6 +36,30 @@
                 </div>
             </div>
             </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="d-flex-column pl-2">
+                <div class="about d-flex">
+                    <b class="mr-2 mt-1">Average overall rating: <span id=stars></span></b>
+                    <h4>{{$stars}}</h4>
+                </div>
+                <div class="about d-flex">
+                    <b class="mr-2 mt-1">Price-performance: <span id=pp></span></b>
+                    <h4>{{$pp}}</h4>
+                </div>
+                <div class="about d-flex">
+                    <b class="mr-2 mt-1">Descend: <span id=descend></span></b>
+                    <h4>{{$descend}}</h4>
+                </div>
+                <div class="about d-flex">
+                    <b class="mr-2 mt-1">Ascend: <span id=ascend></span></b>
+                    <h4>{{$ascend}}</h4>
+                </div>
+                <div class="about d-flex">
+                    <b class="mr-2 mt-1">Agility: <span id=agility></span></b>
+                    <h4>{{$agility}}</h4>
+                </div>
             </div>
         </div>
         @guest
@@ -139,4 +165,31 @@
             @endforeach
         
 </div>
+<script>
+    document.getElementById("stars").innerHTML = getStars({{$stars}});
+    document.getElementById("pp").innerHTML = getStars({{$pp}});
+    document.getElementById("ascend").innerHTML = getStars({{$ascend}});
+    document.getElementById("descend").innerHTML = getStars({{$descend}});
+    document.getElementById("agility").innerHTML = getStars({{$agility}});
+
+    function getStars(rating) {
+
+        // Round to nearest half
+        rating = Math.round(rating * 2) / 2;
+        let output = [];
+
+        // Append all the filled whole stars
+        for (var i = rating; i >= 1; i--)
+            output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+        // If there is a half a star, append it
+        if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+        // Fill the empty stars
+        for (let i = (5 - rating); i >= 1; i--)
+            output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+        return output.join('');
+    }
+</script>
 @endsection

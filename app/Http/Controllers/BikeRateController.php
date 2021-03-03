@@ -14,9 +14,25 @@ class BikeRateController extends Controller
     {  
         $rates = BikeRates::where('bike_id', $bike->id)
                 ->get();
+        $stars = BikeRates::where('bike_id', $bike->id)
+                ->avg('stars');
+        $pp = BikeRates::where('bike_id', $bike->id)
+                ->avg('price_performance');        
+        $descend = BikeRates::where('bike_id', $bike->id)
+                ->avg('descend');
+        $ascend = BikeRates::where('bike_id', $bike->id)
+                ->avg('ascend');
+        $agility = BikeRates::where('bike_id', $bike->id)
+                ->avg('agility');
+
         return view('bikes.bikeProfile', [
             'bike'=> $bike,
-            'rates' => $rates
+            'rates' => $rates,
+            'stars' => $stars,
+            'pp' => $pp,
+            'ascend' => $ascend,
+            'descend' => $descend,
+            'agility' => $agility
         ]);
     }
 
