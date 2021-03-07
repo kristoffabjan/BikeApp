@@ -10,7 +10,7 @@
                     <div class="account-settings">
                         <div class="user-profile">
                             <div class="user-avatar">
-                                <p>image to be</p>
+                                <img class="img-fluid" src="/storage/bikes_profile_images/{{$bike->profile_image}}" alt="">
                             </div>
                             <h3>{{$bike->brand}}</h3>
                         </div>

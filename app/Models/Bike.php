@@ -15,7 +15,8 @@ class Bike extends Model
         'release_date' ,
         'price',
         'suspension_range',
-        'url'
+        'url',
+        'profile_image'
     ];
 
     /**
