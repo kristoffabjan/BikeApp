@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\ShopRates;
 use Illuminate\Http\Request;
 
 class ShopsController extends Controller
@@ -57,8 +58,11 @@ class ShopsController extends Controller
 
     public function shopProfile(Shop $shop) 
     {
+        $rates = ShopRates::where('shop_id', $shop->id)
+                ->get();
         return view('shops.shopProfile', [
-            'shop' => $shop
+            'shop' => $shop,
+            'rates' => $rates
         ]);
     }
 
