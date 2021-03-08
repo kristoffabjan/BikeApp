@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label for="profile_image" class="col-sm-2 col-form-label">Shops profile pic</label>
                         <div class="col-sm-10">
-                        <input type="file" class="form" id="profile_image" name="profile_image"  placeholder="Image" required>
+                        <input type="file" class="form" id="profile_image" name="profile_image"  placeholder="Image" >
                         </div>
                     </div>
                     <div class="form-group row">
