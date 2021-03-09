@@ -58,18 +58,6 @@ class BikeController extends Controller
             'profile_image' => $fileNameToStore
         ]);
 
-        #Bike::create([
-         #   'brand' => $request->brand,
-          #  'model' => $request->model,
-           # 'release_date' => $request->release_date,
-            #'price' => $request->price,
-            #'suspension_range' => $request->suspension_range,
-            #'user_id' => Auth::id(),
-            #'url' => $request->url,
-            #"updated_at" => $request->date_create,
-            #"created_at" => $request->date_create
-        #]);
-
         return redirect()->route('home');
     }
 }

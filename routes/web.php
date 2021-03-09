@@ -44,7 +44,8 @@ Route::get('/addShop', [ShopsController::class, 'viewShopsForm']);
 
 Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.shop');
 
-Route::get('/newTest',[TestController::class, 'insert'])->name('new.test');
+Route::get('/newTest/{id}',[TestController::class, 'insert'])->name('new.test');
+Route::post('/newTest/{id}',[TestController::class, 'create']);
 
 Route::get('/home', [BikeController::class, 'index']);
 Route::get('/', [BikeController::class, 'index'])->name('home');

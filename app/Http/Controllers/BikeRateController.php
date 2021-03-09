@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bike;
 use App\Models\BikeRates;
+use App\Models\Test;
 use Illuminate\Http\Request;
 
 class BikeRateController extends Controller
@@ -24,6 +25,8 @@ class BikeRateController extends Controller
                 ->avg('ascend');
         $agility = BikeRates::where('bike_id', $bike->id)
                 ->avg('agility');
+        $tests = Test::where('bike_id', $bike->id)
+                ->get();
 
         return view('bikes.bikeProfile', [
             'bike'=> $bike,
@@ -32,7 +35,8 @@ class BikeRateController extends Controller
             'pp' => $pp,
             'ascend' => $ascend,
             'descend' => $descend,
-            'agility' => $agility
+            'agility' => $agility,
+            'tests' => $tests
         ]);
     }
 
@@ -57,15 +61,6 @@ class BikeRateController extends Controller
             'agility' => $request->agility,
             'opinion' => $request->opinion,
         ]);
-
-       /*  BikeRates::create([
-            'stars' => $request->overal,
-            'price_performance' => $request->pp,
-            'descend' => $request->descend,
-            'ascend' => $request->ascend,
-            'agility' => $request->agility,
-            'opinion' => $request->opinion,
-        ]); */
        
 
         return redirect()->route('rate.bike', $bikeId);

@@ -9,6 +9,13 @@ class Test extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'bike_id',
+        'name' ,
+        'magazine',
+        'url'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

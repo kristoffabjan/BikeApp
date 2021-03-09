@@ -4,8 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 d-flex-col">
-            <div>
-                <form action="" method="get" >
+            <h1 class="mb-2">Submit magazine test for this bike</h1>
+            <div class="mt-2">
+                <form action="{{route('new.test', $bikeId)}}" method="post" >
                     @csrf
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Article name:</label>

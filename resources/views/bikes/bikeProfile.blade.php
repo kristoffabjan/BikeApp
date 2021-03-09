@@ -33,34 +33,32 @@
                         <li><strong> Frame suspension: </strong>{{$bike->suspension_range}}mm</li>
                         <li><strong> URL:</strong> <a href="{{$bike->url}}">link to official page</a></li>
                     </ul>
-                    <a class="btn btn-dark btn-lg btn-block" href="{{route('new.test')}}" role="button">Add official test of this bike</a>
+                    <div class="d-flex-column pl-2 mb-2">
+                        <div class="about d-flex">
+                            <b class="mr-2 mt-1">Average overall rating: <span id=stars></span></b>
+                            <span class="text-secondary text-sm pt-1" style="font-size: small;"> {{$stars}}</span>
+                        </div>
+                        <div class="about d-flex">
+                            <b class="mr-2 mt-1">Price-performance: <span id=pp></span></b>
+                            <span class="text-secondary text-sm pt-1" style="font-size: small;"> {{$pp}}</span>
+                        </div>
+                        <div class="about d-flex">
+                            <b class="mr-2 mt-1">Descend: <span id=descend></span></b>
+                            <span class="text-secondary text-sm pt-1" style="font-size: small;"> {{$descend}}</span>
+                        </div>
+                        <div class="about d-flex">
+                            <b class="mr-2 mt-1">Ascend: <span id=ascend></span></b>
+                            <span class="text-secondary text-sm pt-1" style="font-size: small;"> {{$ascend}}</span>
+                        </div>
+                        <div class="about d-flex">
+                            <b class="mr-2 mt-1">Agility: <span id=agility></span></b>
+                            <span class="text-secondary text-sm pt-1" style="font-size: small;"> {{$agility}}</span>
+                        </div>
+                    </div>
+                    <a class="btn btn-dark btn-lg btn-block" href="{{route('new.test', $bike->id)}}" role="button">Add official test of this bike</a>
                 </div>
             </div>
             </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="d-flex-column pl-2">
-                <div class="about d-flex">
-                    <b class="mr-2 mt-1">Average overall rating: <span id=stars></span></b>
-                    <h4>{{$stars}}</h4>
-                </div>
-                <div class="about d-flex">
-                    <b class="mr-2 mt-1">Price-performance: <span id=pp></span></b>
-                    <h4>{{$pp}}</h4>
-                </div>
-                <div class="about d-flex">
-                    <b class="mr-2 mt-1">Descend: <span id=descend></span></b>
-                    <h4>{{$descend}}</h4>
-                </div>
-                <div class="about d-flex">
-                    <b class="mr-2 mt-1">Ascend: <span id=ascend></span></b>
-                    <h4>{{$ascend}}</h4>
-                </div>
-                <div class="about d-flex">
-                    <b class="mr-2 mt-1">Agility: <span id=agility></span></b>
-                    <h4>{{$agility}}</h4>
-                </div>
             </div>
         </div>
         @guest
@@ -141,15 +139,17 @@
                     
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-dark">Add bike</button>
+                            <button type="submit" class="btn btn-primary btn-dark">Submit rate</button>
                         </div>
                     </div>
                 </div>    
             </form>
         </div>
         @endguest
-       
-            @foreach ($rates as $rate)
+        <div class="row mt-3">
+            <div class="col">
+                <h2>Users rates:</h2>
+                @foreach ($rates as $rate)
                 <div>
                     <div class="card mt-3 d-flex-column p-2">
                         <h3>Posted by: {{$rate->user->name}}</h3>
@@ -164,6 +164,21 @@
                     </div>
                 </div>
             @endforeach
+            </div>
+            <div class="col">
+                <h2>Official reviews:</h2>
+                @foreach ($tests as $test)
+                <div>
+                    <div class="card mt-3 d-flex-column p-2">
+                        <h3> {{$test->name}}</h3>
+                        <h4>{{$test->magazine}}</h4>
+                        <a class="btn btn-dark btn-lg btn-block" href="{{$test->url}}" role="button">Link</a>
+                    </div>
+                </div>
+            @endforeach
+            </div>
+        </div>
+            
         
 </div>
 <script>
