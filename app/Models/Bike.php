@@ -45,4 +45,8 @@ class Bike extends Model
     public function bikeRates(){
         return $this->hasMany(BikeRates::class);
     }
+
+    public function tests(){
+        return $this->hasMany(Test::class);
+    }
 }

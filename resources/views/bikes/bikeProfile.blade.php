@@ -29,10 +29,11 @@
                     <ul>
                         <li><strong> Posted by:</strong> {{$bike->user->name}}</li>
                         <li><strong> Released:</strong> {{$bike->release_date}}</li>
-                        <li><strong> Price:</strong> {{$bike->price}}</li>
-                        <li><strong> Frame suspension: </strong>{{$bike->suspension_range}}</li>
+                        <li><strong> Price:</strong> {{$bike->price}}€</li>
+                        <li><strong> Frame suspension: </strong>{{$bike->suspension_range}}mm</li>
                         <li><strong> URL:</strong> <a href="{{$bike->url}}">link to official page</a></li>
                     </ul>
+                    <a class="btn btn-dark btn-lg btn-block" href="{{route('new.test')}}" role="button">Add official test of this bike</a>
                 </div>
             </div>
             </div>

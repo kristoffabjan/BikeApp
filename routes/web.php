@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopRateController;
 use App\Http\Controllers\ShopsController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,8 @@ Route::get('/shopProfile/{shop}',[ShopsController::class, 'shopProfile'])->name(
 Route::get('/addShop', [ShopsController::class, 'viewShopsForm']);
 
 Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.shop');
+
+Route::get('/newTest',[TestController::class, 'insert'])->name('new.test');
 
 Route::get('/home', [BikeController::class, 'index']);
 Route::get('/', [BikeController::class, 'index'])->name('home');
