@@ -51,5 +51,6 @@ Route::get('/home', [BikeController::class, 'index']);
 Route::get('/', [BikeController::class, 'index'])->name('home');
 Route::get('/newBike', [BikeController::class, 'new_bike'])->name('addNewBike');
 Route::post('/newBike', [BikeController::class, 'store']);
+Route::get('/bikeImages/{id}', [BikeController::class, 'storeImages'])->name('bikeImages');
 
 Auth::routes();

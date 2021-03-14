@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bike;
+use App\Models\BikeImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +60,33 @@ class BikeController extends Controller
         ]);
 
         return redirect()->route('home');
+    }
+
+    public function storeImages(Request $request, $bikeId)
+    {
+       #dd($request->images);
+        #$this->validate($request, [
+         #   'images' => 'required',
+          #  'images.*' => 'mimes:jpeg,jpg,png,gif'
+        #]);
+        dd($request->images);
+
+        if ($request->hasFile('images')) {
+
+            foreach ($request->file('images') as  $image) {
+                #complete filename
+                $fileNameWithExt = $image->getClientOriginalName();
+                #filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                #EXT
+                $extension = $image->getClientOriginalExtension();
+                #filename to store
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                $path = $image->storeAs('public/bike_images', $fileNameToStore);
+
+                BikeImages::
+            }
+        }
     }
 }
 

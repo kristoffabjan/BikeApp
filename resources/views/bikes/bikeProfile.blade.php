@@ -59,12 +59,13 @@
                     @else
                     <a class="btn btn-dark btn-lg btn-block" href="{{route('new.test', $bike->id)}}" role="button">Add official test of this bike</a>
                     <p class="mt-2" style="font-size: 2em">Add new images of this bike:</p>
-                    <form action="" method="get" enctype="multipart/form-data">
+
+                    <form action="{{route('bikeImages', $bike->id)}}" method="get" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row border">
                             <label for="images" class="col-md col-form-label" style="font-size: 2em">Images</label>
                             <div class="col-sm-10">
-                            <input type="file" class="form" id="bike_images" name="images"  placeholder="Images" multiple >
+                            <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
                             </div>
                         </div>
                         <div class="form-group row">
