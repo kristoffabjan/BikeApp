@@ -17,7 +17,26 @@
                         <div class="about">
                             <h4>{{$bike->model}}</h4>
                         </div>
-                        <div class="about d-flex">
+                        <div class="d-flex flex-column">
+                            @guest 
+                            @else
+                                <p class="mt-2" style="font-size: 1em">Add more images:</p>
+
+                                    <form action="{{route('bikeImages', $bike->id)}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group border">
+                                            <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
+                                            <div class="col-sm-10">
+                                            <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -55,26 +74,7 @@
                             <span class="text-secondary text-sm pt-1" style="font-size: small;"> {{$agility}}</span>
                         </div>
                     </div>
-                    @guest 
-                    @else
                     <a class="btn btn-dark btn-lg btn-block" href="{{route('new.test', $bike->id)}}" role="button">Add official test of this bike</a>
-                    <p class="mt-2" style="font-size: 2em">Add new images of this bike:</p>
-
-                    <form action="{{route('bikeImages', $bike->id)}}" method="get" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group row border">
-                            <label for="images" class="col-md col-form-label" style="font-size: 2em">Images</label>
-                            <div class="col-sm-10">
-                            <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary btn-dark">Add images</button>
-                            </div>
-                        </div>
-                    </form>
-                     @endguest
                 </div>
             </div>
             </div>
@@ -82,17 +82,20 @@
         </div>
         <div class="row">
             <div class="col">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide w-500" data-ride="carousel">
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="/storage/bikes_profile_images/{{$bike->profile_image}}" alt="First slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Second slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Third slide">
-                      </div>
+                        @foreach ($images as $image)
+                            @if ($image == $images[0])
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="First slide">
+                                </div> 
+                            @else
+                            <div class="carousel-item ">
+                                <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="First slide">
+                            </div> 
+                            @endif
+                            
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

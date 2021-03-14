@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bike;
+use App\Models\BikeImages;
 use App\Models\BikeRates;
 use App\Models\Test;
 use Illuminate\Http\Request;
@@ -27,6 +28,9 @@ class BikeRateController extends Controller
                 ->avg('agility');
         $tests = Test::where('bike_id', $bike->id)
                 ->get();
+        $images = BikeImages::where('bike_id', $bike->id)
+                ->get();
+
 
         return view('bikes.bikeProfile', [
             'bike'=> $bike,
@@ -36,7 +40,8 @@ class BikeRateController extends Controller
             'ascend' => $ascend,
             'descend' => $descend,
             'agility' => $agility,
-            'tests' => $tests
+            'tests' => $tests,
+            'images' => $images
         ]);
     }
 

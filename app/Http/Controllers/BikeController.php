@@ -69,7 +69,6 @@ class BikeController extends Controller
          #   'images' => 'required',
           #  'images.*' => 'mimes:jpeg,jpg,png,gif'
         #]);
-        dd($request->images);
 
         if ($request->hasFile('images')) {
 
@@ -84,9 +83,16 @@ class BikeController extends Controller
                 $fileNameToStore = $filename.'_'.time().'.'.$extension;
                 $path = $image->storeAs('public/bike_images', $fileNameToStore);
 
-                BikeImages::
+                
+
+                $bikeImage = new BikeImages();
+                $bikeImage->bike_id = $bikeId;
+                $bikeImage->path = $fileNameToStore;
+                $bikeImage->save();
+
             }
         }
+        return redirect()->route('rate.bike', $bikeId);
     }
 }
 
