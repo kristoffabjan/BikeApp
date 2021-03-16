@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\ShopImages;
 use App\Models\ShopRates;
 use Illuminate\Http\Request;
 
@@ -60,14 +61,44 @@ class ShopsController extends Controller
     {
         $rates = ShopRates::where('shop_id', $shop->id)
                 ->get();
+        $images = ShopImages::where('shop_id', $shop->id)
+                ->get();
         return view('shops.shopProfile', [
             'shop' => $shop,
-            'rates' => $rates
+            'rates' => $rates,
+            'images' => $images
         ]);
     }
 
     public function viewShopsForm()
     {
         return view('shops.shopsForm');
+    }
+
+    public function storeImages(Request $request, $shopId)
+    {
+        if ($request->hasFile('images')) {
+
+            foreach ($request->file('images') as  $image) {
+                #complete filename
+                $fileNameWithExt = $image->getClientOriginalName();
+                #filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                #EXT
+                $extension = $image->getClientOriginalExtension();
+                #filename to store
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                $path = $image->storeAs('public/shop_images', $fileNameToStore);
+
+                
+
+                $bikeImage = new ShopImages();
+                $bikeImage->shop_id = $shopId;
+                $bikeImage->path = $fileNameToStore;
+                $bikeImage->save();
+
+            }
+        }
+        return redirect()->route('shop.profile', $shopId);
     }
 }

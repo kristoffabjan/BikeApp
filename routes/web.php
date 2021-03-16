@@ -41,6 +41,7 @@ Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
 Route::post('/storeShop',[ShopsController::class, 'store'])->name('store.shop');
 Route::get('/shopProfile/{shop}',[ShopsController::class, 'shopProfile'])->name('shop.profile');
 Route::get('/addShop', [ShopsController::class, 'viewShopsForm']);
+Route::post('/shopImages/{id}', [ShopsController::class, 'storeImages'])->name('shopImages');
 
 Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.shop');
 

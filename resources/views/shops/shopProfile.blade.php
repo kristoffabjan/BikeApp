@@ -12,6 +12,27 @@
                                 <div class="user-avatar">
                                     <img class="img-fluid" src="/storage/shops_profile_images/{{$shop->profile_image}}" alt="">
                                 </div>
+                                <div class="d-flex flex-column">
+                                    @guest 
+                                    @else
+                                        <p class="mt-2" style="font-size: 1em">Add more images:</p>
+        
+                                            <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="form-group border">
+                                                    <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                    @endguest
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,6 +90,35 @@
                     </div>
                 </div>    
             </form>
+        </div>
+
+        <div class="row mt-4 mb-4">
+            <div class="col">
+                <div id="carouselExampleControls" class="carousel slide w-500" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($images as $image)
+                                @if ($image == $images[0])
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100"  src="/storage/shop_images/{{$image->path}}" alt="First slide">
+                                    </div> 
+                                @else
+                                <div class="carousel-item ">
+                                    <img class="d-block w-100"   src="/storage/shop_images/{{$image->path}}" alt="First slide">
+                                </div> 
+                                @endif
+                                
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                  </div>
+            </div>
         </div>
 
         @foreach ($rates as $rate)
