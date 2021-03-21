@@ -12,27 +12,7 @@
                                 <div class="user-avatar">
                                     <img class="img-fluid" src="/storage/shops_profile_images/{{$shop->profile_image}}" alt="">
                                 </div>
-                                <div class="d-flex flex-column">
-                                    @guest 
-                                    @else
-                                        <p class="mt-2" style="font-size: 1em">Add more images:</p>
-        
-                                            <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="form-group border">
-                                                    <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-10">
-                                                        <button type="submit" class="btn btn-primary btn-dark">Add images</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                    @endguest
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -55,8 +35,38 @@
             </div>
             </div>
         </div>
+        <div class="row-8">
+            <div class="card" style="width: inherit">
+                <div class="d-flex flex-column">
+                    @guest 
+                    @else
+                        <p class="mt-2" style="font-size: 1em">Add more images:</p>
+
+                            <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group border">
+                                    <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
+                                    <div class="col-sm-10">
+                                    <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                    </div>
+                                </div>
+                            </form>
+                    @endguest
+                </div>
+            </div>
+        </div>
+
         @guest
-         <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to rate this bike.  </h4>
+        <div class="row">
+            <div class="card">
+                <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to rate this bike.  </h4>
+            </div>
+        </div>
          @else
         <h2 class="mb-2">Rate this shop:</h2>
         <div class="card p-3 mb-3">
