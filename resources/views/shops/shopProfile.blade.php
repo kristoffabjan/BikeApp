@@ -35,43 +35,47 @@
             </div>
             </div>
         </div>
-        <div class="row-8 d-flex">
-            <div class="col">
-                <div class="" >
-                    <div class="d-flex flex-column">
-                        @guest 
-                        @else
-                            <h3 class="mt-2" >Add more images:</h3>
-    
-                                <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-group border">
-                                        <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
-                                        <div class="col-sm-10">
-                                        <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+
+        @if ($shop->createdBy(Auth::user(), $shop))
+            <div class="row-8 d-flex">
+                <div class="col">
+                    <div class="" >
+                        <div class="d-flex flex-column">
+                            @guest 
+                            @else
+                                <h3 class="mt-2" >Add more images:</h3>
+        
+                                    <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group border">
+                                            <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
+                                            <div class="col-sm-10">
+                                            <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                        @endguest
+                                    </form>
+                            @endguest
+                        </div>
                     </div>
                 </div>
+                <div class="col ">
+                    <h3>Add new bikes available at your shop:</h3>
+                    <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
+                    <ol id="ollist" style="display: none">
+                        <li>loll</li>
+                        <li>loll</li>
+                        <li>loll</li>
+                        <li>loll</li>
+                    </ol>
+                </div>
             </div>
-            <div class="col ">
-                <h3>Add new bikes available at your shop:</h3>
-                <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
-                <ol id="ollist" style="display: none">
-                    <li>loll</li>
-                    <li>loll</li>
-                    <li>loll</li>
-                    <li>loll</li>
-                </ol>
-            </div>
-        </div>
+         @else
+        @endif
 
         @guest
         <div class="row">
@@ -80,39 +84,41 @@
             </div>
         </div>
          @else
-        <h2 class="mb-2">Rate this shop:</h2>
-        <div class="card p-3 mb-3">
-            <form action="{{route('rate.shop', $shop->id)}}" method="post">
-                @csrf
-                <div class="d-flex-column">
+            @if (!($shop->hasRated(Auth::user())))
+                <h2 class="mb-2">Rate this shop:</h2>
+                <div class="card p-3 mb-3">
+                    <form action="{{route('rate.shop', $shop->id)}}" method="post">
+                        @csrf
+                        <div class="d-flex-column">
 
 
-                    <div class="form-group row">
-                        <label for="stars" class="col-sm-2 col-form-label ">Overal rate</label>
-                        <select class="form-select ml-4" name="stars" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+                            <div class="form-group row">
+                                <label for="stars" class="col-sm-2 col-form-label ">Overal rate</label>
+                                <select class="form-select ml-4" name="stars" aria-label="Default select example" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Users opinion</label>
-                        <textarea class="form-control" id="uo" name="opinion" rows="4"></textarea>
-                      </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Users opinion</label>
+                                <textarea class="form-control" id="uo" name="opinion" rows="4"></textarea>
+                            </div>
 
-                    
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-dark">Post</button>
-                        </div>
-                    </div>
-                </div>    
-            </form>
-        </div>
+                            
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary btn-dark">Post</button>
+                                </div>
+                            </div>
+                        </div>    
+                    </form>
+                </div>
+            @endif
 
         <div class="row mt-4 mb-4">
             <div class="col">

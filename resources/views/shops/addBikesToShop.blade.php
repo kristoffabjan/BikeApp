@@ -7,7 +7,7 @@
             <h2>Add bikes that are currently available in your shop:</h2>
 
             @foreach ($bikes as $bike)
-                <div class="d-flex mb-4 pl-2 border border-dark rounded">
+                <div class="d-flex mb-4 pl-2 border border-dark rounded" id="bikesToAdd">
                     <div class="mr-3">
                         <div class="user-avatar">
                             <img class="img-thumbnail" style="max-width: 250px" src="/storage/bikes_profile_images/{{$bike->profile_image}}" alt="">
@@ -27,10 +27,22 @@
                         </div>
                     </div>
                     <div class="ml-auto d-flex justify-content-center align-items-center pr-4">
-                        <a class="btn btn-dark btn-lg " href="{{route('bikeToShop.add', [$shop, $bike])}}"  role="button">Add</a>
+                        <a class="btn btn-dark btn-lg " href="{{route('bikeToShop.add', [$shop, $bike])}}" onclick="hideBike()" role="button">Add</a>
                     </div>
                 </div>
             @endforeach
     </div>
 </div>
+<script>
+    function hideBike() {
+        var list = document.getElementById("bikesToAdd");
+    
+        if (list.style.display == "none"){
+            list.style.display = "block";
+        }else{
+            list.style.display = "none";
+        }
+    }
+</script>
 @endsection
+

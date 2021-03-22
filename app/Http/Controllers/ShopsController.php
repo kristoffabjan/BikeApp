@@ -7,6 +7,7 @@ use App\Models\Shop;
 use App\Models\ShopImages;
 use App\Models\ShopRates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopsController extends Controller
 {
