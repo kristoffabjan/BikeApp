@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BikesAtShop;
 use App\Models\Shop;
 use App\Models\ShopImages;
 use App\Models\ShopRates;
@@ -63,10 +64,13 @@ class ShopsController extends Controller
                 ->get();
         $images = ShopImages::where('shop_id', $shop->id)
                 ->get();
+        $bikes_at_shop = BikesAtShop::where('shop_id', $shop->id)
+                ->get();
         return view('shops.shopProfile', [
             'shop' => $shop,
             'rates' => $rates,
-            'images' => $images
+            'images' => $images,
+            'bikes_at_shop' => $bikes_at_shop
         ]);
     }
 

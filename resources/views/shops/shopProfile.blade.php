@@ -35,29 +35,41 @@
             </div>
             </div>
         </div>
-        <div class="row-8">
-            <div class="card" style="width: inherit">
-                <div class="d-flex flex-column">
-                    @guest 
-                    @else
-                        <p class="mt-2" style="font-size: 1em">Add more images:</p>
-
-                            <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group border">
-                                    <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
-                                    <div class="col-sm-10">
-                                    <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+        <div class="row-8 d-flex">
+            <div class="col">
+                <div class="" >
+                    <div class="d-flex flex-column">
+                        @guest 
+                        @else
+                            <h3 class="mt-2" >Add more images:</h3>
+    
+                                <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group border">
+                                        <label for="images" class="col-md col-form-label" style="font-size: 1em">Images</label>
+                                        <div class="col-sm-10">
+                                        <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                    @endguest
+                                </form>
+                        @endguest
+                    </div>
                 </div>
+            </div>
+            <div class="col ">
+                <h3>Add new bikes available at your shop:</h3>
+                <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
+                <ol id="ollist" style="display: none">
+                    <li>loll</li>
+                    <li>loll</li>
+                    <li>loll</li>
+                    <li>loll</li>
+                </ol>
             </div>
         </div>
 
@@ -131,6 +143,32 @@
             </div>
         </div>
 
+        <h2 class="mt-3">Bikes currently available at this shop:</h2>
+        @foreach ($bikes_at_shop as $bike)
+             <!-- $bike lists entries from bikeAtShop table, bike is a relation, that each bikeAtShop entry belongs to certain bike -->
+            <div class="d-flex mb-4 pl-2 border border-dark rounded">
+                    <div class="mr-3">
+                        <div class="user-avatar">
+                            <img class="img-thumbnail" style="max-width: 250px" src="/storage/bikes_profile_images/{{$bike->bike->profile_image}}" alt="">
+                        </div>
+                    </div>
+                    <div class="d-flex-column">
+                        <div class="pt-2 pb-2">
+                            <a href="{{route('profile.user', $bike->bike->user)}}" class="font-weight-bold text-dark mb-2 mr-2">Added by: {{$bike->bike->user->name}}</a>
+                        </div>
+                        <div class="pb-2">
+                            <h2>{{$bike->bike->brand}}</h2>
+                        </div>
+                        <div>
+                            <a href="{{route('rate.bike', $bike->bike->id)}}">
+                                <h3>{{$bike->bike->model}}</h3>
+                            </a>
+                        </div>
+                   </div>
+                </div>
+        @endforeach
+
+        <h2 class="mt-3 mb-2">Users rates:</h2>
         @foreach ($rates as $rate)
         <div class="d-flex mb-4 pl-2 border border-dark rounded">
             <div class="d-flex-column">
@@ -158,3 +196,14 @@
         
 </div>
 @endsection
+<script>
+    function openList() {
+        var list = document.getElementById("ollist");
+    
+        if (list.style.display == "none"){
+            list.style.display = "block";
+        }else{
+            list.style.display = "none";
+        }
+    }
+    </script>
