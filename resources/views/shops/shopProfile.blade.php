@@ -35,7 +35,7 @@
             </div>
             </div>
         </div>
-
+        @auth
         @if ($shop->createdBy(Auth::user(), $shop))
             <div class="row-8 d-flex">
                 <div class="col">
@@ -76,6 +76,7 @@
             </div>
          @else
         @endif
+        @endauth
 
         @guest
         <div class="row">
@@ -171,6 +172,12 @@
                             </a>
                         </div>
                    </div>
+                   @if ($shop->createdBy(Auth::user(), $shop))
+                        <div class="ml-auto d-flex justify-content-center align-items-center pr-4" >
+                            <a class="btn btn-dark btn-lg bg-danger" href="{{route('bikeToShop.destroy', [$shop,$bike->bike])}}"  role="button"
+                            id="addButton">Remove</a>
+                        </div>
+                    @endif
                 </div>
         @endforeach
 

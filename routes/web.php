@@ -57,5 +57,6 @@ Route::post('/bikeImages/{id}', [BikeController::class, 'storeImages'])->name('b
 
 Route::get('/bikeToShop/{shop}', [BikesAtShopContoller::class, 'index'])->name('bikeToShop');
 Route::get('/bikeToShop/{shop}/{bike}', [BikesAtShopContoller::class, 'store'])->name('bikeToShop.add');
+Route::get('/bikeToShop/{shop}/bike/{bikeShop}', [BikesAtShopContoller::class, 'destroyEntry'])->name('bikeToShop.destroy');
 
 Auth::routes();
