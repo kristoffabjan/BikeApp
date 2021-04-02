@@ -42,6 +42,15 @@ class Bike extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function createdBy(User $user, Bike $bike)
+    {
+        if ($user->id === $bike->user_id ) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public function bikeRates(){
         return $this->hasMany(BikeRates::class);
     }

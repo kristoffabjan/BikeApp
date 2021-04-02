@@ -43,6 +43,7 @@ Route::post('/storeShop',[ShopsController::class, 'store'])->name('store.shop');
 Route::get('/shopProfile/{shop}',[ShopsController::class, 'shopProfile'])->name('shop.profile');
 Route::get('/addShop', [ShopsController::class, 'viewShopsForm']);
 Route::post('/shopImages/{id}', [ShopsController::class, 'storeImages'])->name('shopImages');
+Route::get('/deleteShop/{shop}', [ShopsController::class, 'destroy'])->name('delete.shop');
 
 Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.shop');
 
@@ -54,6 +55,8 @@ Route::get('/', [BikeController::class, 'index'])->name('home');
 Route::get('/newBike', [BikeController::class, 'new_bike'])->name('addNewBike');
 Route::post('/newBike', [BikeController::class, 'store']);
 Route::post('/bikeImages/{id}', [BikeController::class, 'storeImages'])->name('bikeImages');
+Route::get('/deleteBike/{bike}', [BikeController::class, 'destroy'])->name('delete.bike');
+
 
 Route::get('/bikeToShop/{shop}', [BikesAtShopContoller::class, 'index'])->name('bikeToShop');
 Route::get('/bikeToShop/{shop}/{bike}', [BikesAtShopContoller::class, 'store'])->name('bikeToShop.add');

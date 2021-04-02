@@ -94,5 +94,11 @@ class BikeController extends Controller
         }
         return redirect()->route('rate.bike', $bikeId);
     }
+
+    public function destroy(Bike $bike)
+    {
+        $deletedRows = Bike::where('id', $bike->id)->delete();
+        return back();
+    }
 }
 

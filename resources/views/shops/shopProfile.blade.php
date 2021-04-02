@@ -30,6 +30,14 @@
                         <li><strong> Email:</strong> {{$shop->email}}</li>
                         <li><strong>  Website:  </strong>{{$shop->url}}</li>
                     </ul>
+                    @auth
+                        @if ($shop->createdBy(Auth::user(), $shop))
+                            <a class="btn btn-dark btn-md text-light bg-dark" href=""  role="button"
+                                id="addButton">Edit</a>
+                            <span><a class="btn btn-dark btn-md text-light bg-dark" href="{{route('delete.shop', $shop)}}"  role="button"
+                                id="addButton">Delete</a></span>
+                        @endif
+                    @endauth
                 </div>
             </div>
             </div>
@@ -172,12 +180,14 @@
                             </a>
                         </div>
                    </div>
+                   @auth
                    @if ($shop->createdBy(Auth::user(), $shop))
                         <div class="ml-auto d-flex justify-content-center align-items-center pr-4" >
                             <a class="btn btn-dark btn-lg bg-danger" href="{{route('bikeToShop.destroy', [$shop,$bike->bike])}}"  role="button"
                             id="addButton">Remove</a>
                         </div>
                     @endif
+                    @endauth
                 </div>
         @endforeach
 

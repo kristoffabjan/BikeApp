@@ -32,6 +32,18 @@
                             </a>
                         </div>
                    </div>
+                   <div class="ml-auto  mr-4">
+                        @auth
+                             @if ($bike->createdBy(Auth::user(), $bike))
+                                <div class="ml-4 d-flex flex-column  justify-content-center  w-100 h-100 pr-4" >
+                                    <a class="btn btn-dark btn-md text-light mb-2" href=""  role="button"
+                                    id="addButton" style="color: rgb(110, 155, 37)">Edit</a>
+                                    <a class="btn btn-dark btn-md text-light bg-danger" href="{{route('delete.bike', $bike)}}"  role="button"
+                                    id="addButton" style="color: rgb(211, 105, 105)">Delete</a>
+                                </div>
+                            @endif
+                        @endauth
+                    </div>
                 </div>
             @endforeach
         </div>

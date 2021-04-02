@@ -106,4 +106,10 @@ class ShopsController extends Controller
         }
         return redirect()->route('shop.profile', $shopId);
     }
+
+    public function destroy(Shop $shop)
+    {
+        $deletedRows = Shop::where('id', $shop->id)->delete();
+        return back();
+    }
 }

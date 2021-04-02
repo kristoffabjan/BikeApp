@@ -12,8 +12,8 @@
             @foreach($shops as $shop)
 
            
-            <div class="card mb-4  pl-2">
-                <div class="d-flex">
+            <div class="card d-flex flex-row mb-4  pl-2">
+
                     <div class="mr-2">
                         <img style="max-width: 200px; max-height:200px;" class="img-thumbnail" src="/storage/shops_profile_images/{{$shop->profile_image}}" alt="">
                     </div>    
@@ -28,7 +28,17 @@
                         <h3>{{$shop->address}}</h3>
                         </div>
                     </div>
-                </div>    
+                        @auth
+                        @if ($shop->createdBy(Auth::user(), $shop))
+                            <div class="ml-auto d-flex flex-column  justify-content-center  pr-4 " >
+                                <a class="btn btn-dark btn-md text-light mb-2" href=""  role="button"
+                                id="addButton" style="color: rgb(110, 155, 37)">Edit</a>
+                                <a class="btn btn-dark btn-md text-light bg-danger" href="{{route('delete.shop', $shop)}}"  role="button"
+                                id="addButton" style="color: rgb(211, 105, 105)">Delete</a>
+                            </div>
+                            @endif
+                        @endauth
+                   
             </div>
             @endforeach
         </div>
