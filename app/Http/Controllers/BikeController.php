@@ -100,5 +100,28 @@ class BikeController extends Controller
         $deletedRows = Bike::where('id', $bike->id)->delete();
         return back();
     }
+
+    public function edit_form(Bike $bike)
+    {
+        return view('bikes.updateBike', [
+            'bike' => $bike
+        ]);
+    }
+
+    public function edit(Request $request, Bike $bike)
+    {
+        $data = $request->all();
+
+        foreach ($data as $key =>$value) {
+            if ($key != "_token") {
+                if ($value != null) {
+                    $affected = Bike::where('id', $bike->id)
+                        ->update([$key => $value]);
+                }
+            }
+        }
+        
+        return redirect()->route('rate.bike', $bike->id);
+    }
 }
 

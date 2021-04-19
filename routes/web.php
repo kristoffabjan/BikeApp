@@ -56,6 +56,8 @@ Route::get('/newBike', [BikeController::class, 'new_bike'])->name('addNewBike');
 Route::post('/newBike', [BikeController::class, 'store']);
 Route::post('/bikeImages/{id}', [BikeController::class, 'storeImages'])->name('bikeImages');
 Route::get('/deleteBike/{bike}', [BikeController::class, 'destroy'])->name('delete.bike');
+Route::get('/editBike/{bike}', [BikeController::class, 'edit_form'])->name('edit.bike');
+Route::post('/editBikeData/{bike}', [BikeController::class, 'edit'])->name('edit.bike.data');
 
 
 Route::get('/bikeToShop/{shop}', [BikesAtShopContoller::class, 'index'])->name('bikeToShop');
