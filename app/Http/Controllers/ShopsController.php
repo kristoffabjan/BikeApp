@@ -112,4 +112,27 @@ class ShopsController extends Controller
         $deletedRows = Shop::where('id', $shop->id)->delete();
         return back();
     }
+
+    public function edit_form(Shop $shop)
+    {
+        return view('shops.editShop', [
+            'shop' => $shop
+        ]);
+    }
+
+    public function edit(Request $request, Shop $shop)
+    {
+        $data = $request->all();
+
+        foreach ($data as $key =>$value) {
+            if ($key != "_token") {
+                if ($value != null) {
+                    $affected = Shop::where('id', $shop->id)
+                        ->update([$key => $value]);
+                }
+            }
+        }
+        
+        return redirect()->route('shop.profile', $shop);
+    }
 }

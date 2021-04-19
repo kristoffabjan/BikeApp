@@ -1,0 +1,9 @@
+#hideProfileButton {
+    display: none;
+    color: green;
+  }
+  
+  #bikeProfileImage:hover + #hideProfileButton {
+    display: block;
+    color: red;
+  }

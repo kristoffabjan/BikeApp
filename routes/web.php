@@ -44,6 +44,8 @@ Route::get('/shopProfile/{shop}',[ShopsController::class, 'shopProfile'])->name(
 Route::get('/addShop', [ShopsController::class, 'viewShopsForm']);
 Route::post('/shopImages/{id}', [ShopsController::class, 'storeImages'])->name('shopImages');
 Route::get('/deleteShop/{shop}', [ShopsController::class, 'destroy'])->name('delete.shop');
+Route::get('/editShop/{shop}', [ShopsController::class, 'edit_form'])->name('edit.shop');
+Route::post('/editShopData/{shop}', [ShopsController::class, 'edit'])->name('edit.shop.data');
 
 Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.shop');
 

@@ -32,7 +32,7 @@
                     </ul>
                     @auth
                         @if ($shop->createdBy(Auth::user(), $shop))
-                            <a class="btn btn-dark btn-md text-light bg-dark" href=""  role="button"
+                            <a class="btn btn-dark btn-md text-light bg-dark" href="{{route('edit.shop', $shop)}}"  role="button"
                                 id="addButton">Edit</a>
                             <span><a class="btn btn-dark btn-md text-light bg-dark" href="{{route('delete.shop', $shop)}}"  role="button"
                                 id="addButton">Delete</a></span>
