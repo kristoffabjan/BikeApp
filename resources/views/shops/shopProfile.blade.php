@@ -212,15 +212,15 @@
                 </div>
            </div>
            @auth
-                        @if ($rate->createdBy(Auth::user(), $rate))
-                            <div class="ml-auto d-flex flex-column  justify-content-center  pr-4 " >
-                                <a class="btn btn-dark btn-md text-light mb-2" href="{{route('edit.shop.rate', [$rate, $shop])}}"  role="button"
-                                id="addButton" style="color: rgb(110, 155, 37)">Edit</a>
-                                <a class="btn btn-dark btn-md text-light bg-danger" href="{{route('destroy.shop.rate', $rate)}}"  role="button"
-                                id="addButton" style="color: rgb(211, 105, 105)">Delete</a>
-                            </div>
-                            @endif
-                        @endauth
+                @if ($rate->createdBy(Auth::user(), $rate))
+                    <div class="ml-auto d-flex flex-column  justify-content-center  pr-4 " >
+                        <a class="btn btn-dark btn-md text-light mb-2" href="{{route('edit.shop.rate', [$rate, $shop])}}"  role="button"
+                        id="addButton" style="color: rgb(110, 155, 37)">Edit</a>
+                        <a class="btn btn-dark btn-md text-light bg-danger" href="{{route('destroy.shop.rate', $rate)}}"  role="button"
+                        id="addButton" style="color: rgb(211, 105, 105)">Delete</a>
+                    </div>
+                @endif
+            @endauth
         </div>
         @endforeach
 

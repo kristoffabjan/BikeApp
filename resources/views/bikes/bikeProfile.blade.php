@@ -118,118 +118,132 @@
         @guest
          <h4 class="pl-3">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to rate this bike.  </h4>
          @else
-        <h2 class="mb-2">Rate this bike:</h2>
-        <div class="card p-3">
-            <form action="{{route('rate.bike.form', $bike->id)}}" method="post">
-                @csrf
-                <div class="d-flex-column">
+            @if (!$bike->createdBy(Auth::user(), $bike))
+                @if (!$bike->hasRated(Auth::user()))
+                    <h2 class="mb-2">Rate this bike:</h2>
+                    <div class="card p-3">
+                        <form action="{{route('rate.bike.form', $bike->id)}}" method="post">
+                            @csrf
+                            <div class="d-flex-column">
 
 
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label ">Overal rate</label>
-                        <select class="form-select ml-4" name="overal" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+                                <div class="form-group row">
+                                    <label for="brand" class="col-sm-2 col-form-label ">Overal rate</label>
+                                    <select class="form-select ml-4" name="overal" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="brand" class="col-sm-2 col-form-label ">Price/performance</label>
+                                    <select class="form-select ml-4" name="pp" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="brand" class="col-sm-2 col-form-label ">Ascend</label>
+                                    <select class="form-select ml-4" name="ascend" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="brand" class="col-sm-2 col-form-label ">Descend</label>
+                                    <select class="form-select ml-4" name="descend" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="brand" class="col-sm-2 col-form-label ">Agility</label>
+                                    <select class="form-select ml-4" name="agility" aria-label="Default select example" required>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Users opinion</label>
+                                    <textarea class="form-control" id="uo" name="opinion" rows="4"></textarea>
+                                </div>
+
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary btn-dark">Submit rate</button>
+                                    </div>
+                                </div>
+                            </div>    
+                        </form>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label ">Price/performance</label>
-                        <select class="form-select ml-4" name="pp" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label ">Ascend</label>
-                        <select class="form-select ml-4" name="ascend" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label ">Descend</label>
-                        <select class="form-select ml-4" name="descend" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label ">Agility</label>
-                        <select class="form-select ml-4" name="agility" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Users opinion</label>
-                        <textarea class="form-control" id="uo" name="opinion" rows="4"></textarea>
-                      </div>
-
-                    
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-dark">Submit rate</button>
-                        </div>
-                    </div>
-                </div>    
-            </form>
-        </div>
+                @endif
+            @endif
         @endguest
         <div class="row mt-3">
             <div class="col">
                 <h2>Users rates:</h2>
                 @foreach ($rates as $rate)
-                <div>
-                    <div class="card mt-3 d-flex-column p-2">
-                        <h3>Posted by: {{$rate->user->name}}</h3>
-                        <ul>
-                            <li>Overal rate: {{$rate->stars}}</li>
-                            <li>Price-performance:  {{$rate->price_performance}}</li>
-                            <li>Descending: {{$rate->descend}}</li>
-                            <li>Ascending: {{$rate->ascend}}</li>
-                            <li>Agility: {{$rate->agility}}</li>
-                            <li>Riders opinion: {{$rate->opinion}}</li>
-                        </ul>
+                    <div class="card mt-3 d-flex p-2">
+                        <div class="d-flex flex-column">
+                            <h3>Posted by: {{$rate->user->name}}</h3>
+                            <ul>
+                                <li>Overal rate: {{$rate->stars}}</li>
+                                <li>Price-performance:  {{$rate->price_performance}}</li>
+                                <li>Descending: {{$rate->descend}}</li>
+                                <li>Ascending: {{$rate->ascend}}</li>
+                                <li>Agility: {{$rate->agility}}</li>
+                                <li>Riders opinion: {{$rate->opinion}}</li>
+                            </ul>
+                        </div>
+                        @auth
+                            @if ($rate->createdBy(Auth::user(), $rate))
+                                <div class="ml-auto d-flex flex-column  justify-content-center  pr-4 " >
+                                    <a class="btn btn-dark btn-md text-light mb-2" href="{{route('edit.bike.rate', [$rate, $bike])}}"  role="button"
+                                    id="addButton" style="color: rgb(110, 155, 37)">Edit</a>
+                                    <a class="btn btn-dark btn-md text-light bg-danger" href="{{route('destroy.bike.rate', $rate)}}"  role="button"
+                                    id="addButton" style="color: rgb(211, 105, 105)">Delete</a>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
-                </div>
-            @endforeach
+                @endforeach
             </div>
             <div class="col">
                 <h2>Official reviews:</h2>
                 @foreach ($tests as $test)
-                <div>
-                    <div class="card mt-3 d-flex-column p-2">
-                        <h3> {{$test->name}}</h3>
-                        <h4>{{$test->magazine}}</h4>
-                        <a class="btn btn-dark btn-lg btn-block" href="{{$test->url}}" role="button">Link</a>
+                    <div>
+                        <div class="card mt-3 d-flex-column p-2">
+                            <h3> {{$test->name}}</h3>
+                            <h4>{{$test->magazine}}</h4>
+                            <a class="btn btn-dark btn-lg btn-block" href="{{$test->url}}" role="button">Link</a>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
             </div>
         </div>
             

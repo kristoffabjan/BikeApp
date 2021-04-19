@@ -71,4 +71,37 @@ class BikeRateController extends Controller
         return redirect()->route('rate.bike', $bikeId);
 
     }
+
+    public function destroy(BikeRates $rate)
+    {
+        $deletedRows = BikeRates::where('id', $rate->id)->delete();
+        return back();
+    }
+
+    public function edit_form(BikeRates $rate, Bike $bike)
+    {
+        return view('bikes.editBikeRate', [
+            'rate' => $rate,
+            'bike' => $bike
+        ]);
+    }
+
+    public function edit(Request $request, BikeRates $rate, Bike $bike)
+    {
+        $data = $request->all();
+        #dd($data);
+
+        foreach ($data as $key =>$value) {
+            if ($key != "_token") {
+                if ($value != "Open this select menu") {
+                        if ($value != null) {
+                                $affected = BikeRates::where('id', $rate->id)
+                                ->update([$key => $value]);
+                        }
+                }
+            }
+        }
+        
+        return redirect()->route('rate.bike', $bike);
+    }
 }

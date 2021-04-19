@@ -51,6 +51,11 @@ class Bike extends Model
         }
     }
 
+    public function hasRated(User $user)
+    {
+        return $this->bikeRates->contains('user_id', $user->id);
+    }
+
     public function bikeRates(){
         return $this->hasMany(BikeRates::class);
     }
