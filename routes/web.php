@@ -38,6 +38,7 @@ Route::get('/profile/{user}', [ProfileController::class, 'userProfile'])->name('
 Route::get('/ratebike/{bike}',[BikeRateController::class, 'index'])->name('rate.bike');
 Route::post('/ratebike/{id}',[BikeRateController::class, 'store'])->name('rate.bike.form');
 
+
 Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
 Route::post('/storeShop',[ShopsController::class, 'store'])->name('store.shop');
 Route::get('/shopProfile/{shop}',[ShopsController::class, 'shopProfile'])->name('shop.profile');
@@ -47,10 +48,16 @@ Route::get('/deleteShop/{shop}', [ShopsController::class, 'destroy'])->name('del
 Route::get('/editShop/{shop}', [ShopsController::class, 'edit_form'])->name('edit.shop');
 Route::post('/editShopData/{shop}', [ShopsController::class, 'edit'])->name('edit.shop.data');
 
+
 Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.shop');
+Route::get('/editShopRate/{rate}/rate/{shop}',[ShopRateController::class, 'edit_form'])->name('edit.shop.rate');
+Route::post('/editShopRateData/{rate}/rate/{shop}',[ShopRateController::class, 'edit'])->name('edit.shop.rate.data');
+Route::get('/destroyShopRate/{rate}',[ShopRateController::class, 'destroy'])->name('destroy.shop.rate');
+
 
 Route::get('/newTest/{id}',[TestController::class, 'insert'])->name('new.test');
 Route::post('/newTest/{id}',[TestController::class, 'create']);
+
 
 Route::get('/home', [BikeController::class, 'index']);
 Route::get('/', [BikeController::class, 'index'])->name('home');
@@ -60,6 +67,7 @@ Route::post('/bikeImages/{id}', [BikeController::class, 'storeImages'])->name('b
 Route::get('/deleteBike/{bike}', [BikeController::class, 'destroy'])->name('delete.bike');
 Route::get('/editBike/{bike}', [BikeController::class, 'edit_form'])->name('edit.bike');
 Route::post('/editBikeData/{bike}', [BikeController::class, 'edit'])->name('edit.bike.data');
+
 
 
 Route::get('/bikeToShop/{shop}', [BikesAtShopContoller::class, 'index'])->name('bikeToShop');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shop;
+use App\Models\ShopRates;
 use Illuminate\Http\Request;
 
 class ShopRateController extends Controller
@@ -20,5 +22,35 @@ class ShopRateController extends Controller
         ]);
 
         return redirect()->route('shop.profile', $shopId);
+    }
+
+    public function destroy(ShopRates $rate)
+    {
+        $deletedRows = ShopRates::where('id', $rate->id)->delete();
+        return back();
+    }
+
+    public function edit_form(ShopRates $rate, Shop $shop)
+    {
+        return view('shops.editShopRate', [
+            'rate' => $rate,
+            'shop' => $shop
+        ]);
+    }
+
+    public function edit(Request $request, ShopRates $rate, Shop $shop)
+    {
+        $data = $request->all();
+
+        foreach ($data as $key =>$value) {
+            if ($key != "_token") {
+                if ($value != null) {
+                    $affected = ShopRates::where('id', $rate->id)
+                        ->update([$key => $value]);
+                }
+            }
+        }
+        
+        return redirect()->route('shop.profile', $shop);
     }
 }

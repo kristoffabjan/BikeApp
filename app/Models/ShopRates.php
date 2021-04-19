@@ -16,7 +16,14 @@ class ShopRates extends Model
         'opinion'
     ];
 
-    
+    public function createdBy(User $user, ShopRates $rate)
+    {
+        if ($user->id === $rate->user_id ) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     public function user()
     {
