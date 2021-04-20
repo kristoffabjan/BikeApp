@@ -66,7 +66,7 @@
             <div class="mobile-nav">
                 <!-- Navbar Brand -->
                 <div class="amado-navbar-brand">
-                    <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('design/img/core-img/chain.png') }}" alt=""></a>
                 </div>
                 <!-- Navbar Toggler -->
                 <div class="amado-navbar-toggler">
@@ -82,10 +82,13 @@
                 </div>
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('design/img/core-img/chain.png') }}" alt=""></a>
+                </div>
+                <div>
+                    <h2>BikeFinderApp</h2>
                 </div>
                 <!-- Amado Nav -->
-            
+                @guest
                 <nav class="amado-nav">
                     <ul>
                         <li class="active"><a href="{{ route('home') }}">Home</a></li>
@@ -96,18 +99,45 @@
                         @if (Route::has('register'))
                         <li><a href="{{ route('register') }}">Register</a></li>
                         @endif
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="">About us</a></li>
                     </ul>
                 </nav>
+                @else
+                    <nav class="amado-nav">
+                        <ul>
+                            <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('shops') }}">Shops</a></li>
+                            <li><a href="">About us</a></li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                            
+                @endguest
                 <!-- Button Group -->
-                <div class="amado-btn-group mt-30 mb-100">
-                    <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                    <a href="#" class="btn amado-btn active">New this week</a>
-                </div>
+                @auth
+                    <div class="amado-btn-group mt-30 mb-100">
+                        <a href="{{route('addNewBike')}}" class="btn amado-btn mb-15">Add new bike</a>
+                        <a href="{{url('/addShop')}}" class="btn amado-btn mb-15">Add new shop</a>
+                    </div>
+                @endauth
                 <!-- Cart Menu -->
                 <div class="cart-fav-search mb-100">
-                    <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                    <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                     <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
                 </div>
                 <!-- Social Button -->
@@ -121,127 +151,12 @@
             <!-- Header Area End -->
 
             <!-- Product Catagories Area Start -->
-            <div class="products-catagories-area clearfix">
-                <div class="amado-pro-catagory clearfix">
+            
 
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/1.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $180</p>
-                                <h4>Modern Chair</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/2.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $180</p>
-                                <h4>Minimalistic Plant Pot</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/3.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $180</p>
-                                <h4>Modern Chair</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/4.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $180</p>
-                                <h4>Night Stand</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/5.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $18</p>
-                                <h4>Plant Pot</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/6.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $320</p>
-                                <h4>Small Table</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/7.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $318</p>
-                                <h4>Metallic Chair</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/8.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $318</p>
-                                <h4>Modern Rocking Chair</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Single Catagory -->
-                    <div class="single-products-catagory clearfix">
-                        <a href="shop.html">
-                            <img src="img/bg-img/9.jpg" alt="">
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <div class="line"></div>
-                                <p>From $318</p>
-                                <h4>Home Deco</h4>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            
+                @yield('content')
+            
+               
             <!-- Product Catagories Area End -->
         </div>
         <!-- ##### Main Content Wrapper End ##### -->
