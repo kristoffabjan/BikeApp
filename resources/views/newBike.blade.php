@@ -1,60 +1,50 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 d-flex-col">
-            <div>
-                <form action="{{route('addNewBike')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label">Brand</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="brand" id="brand" placeholder="Brand" value="{{old('brandBike')}}" required>
-                        </div>
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="checkout_details_area mt-50 clearfix">
+
+                    <div class="cart-title">
+                        <h2>Add new bike</h2>
                     </div>
-                    <div class="form-group row">
-                        <label for="bikeModel" class="col-sm-2 col-form-label">Model</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="model"  id="bikeModel" placeholder="Model" required>
+
+                    <form action="{{route('addNewBike')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="first_name" value="" name="brand" placeholder="Brand" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="last_name" value="" name="model" placeholder="Model" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="date" class="form-control" id="company" name="release_date" placeholder="Release date" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="number" class="form-control" id="company" placeholder="Price(€)" name="price" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="number" name="suspension_range" class="form-control mb-3" id="street_address" placeholder="Suspension(mm)" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="url" class="form-control" name="url" id="city" placeholder="Link to manufacturer" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="file" class="form-control" name="profile_image"  id="city" placeholder="Zip Code" value="" required>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn amado-btn w-100">Add bike</button>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="date" class="col-sm-2 col-form-label">Released to public</label>
-                        <div class="col-sm-10">
-                        <input type="date" class="form-control" name="release_date" id="releaseDate" placeholder="Release date" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="price" class="col-sm-2 col-form-label">Price(€)</label>
-                        <div class="col-sm-10">
-                        <input type="number" class="form-control" name="price"  id="price" placeholder="Price" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="suspension" class="col-sm-2 col-form-label">Suspension(mm)</label>
-                        <div class="col-sm-10">
-                        <input type="number" class="form-control" name="suspension_range" id="suspension" placeholder="Suspension(mm)" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="bikeLink" class="col-sm-2 col-form-label">Link to manufacturer</label>
-                        <div class="col-sm-10">
-                        <input type="url" class="form-control" id="bikeLink" name="url"  placeholder="Url" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="profile_image" class="col-sm-2 col-form-label">Bikes profile pic</label>
-                        <div class="col-sm-10">
-                        <input type="file" class="form" id="profile_image" name="profile_image"  placeholder="Image" >
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-dark">Add bike</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

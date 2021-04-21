@@ -1,60 +1,50 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 d-flex-col">
-            <div>
-                <form action="{{route('store.shop')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group row">
-                        <label for="brand" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="name" required>
-                        </div>
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="checkout_details_area mt-50 clearfix">
+
+                    <div class="cart-title">
+                        <h2>Add new bike shop</h2>
                     </div>
-                    <div class="form-group row">
-                        <label for="bikeModel" class="col-sm-2 col-form-label">Address</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="address"  id="address" placeholder="Address" required>
+
+                    <form action="{{route('store.shop')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" id="first_name" value="" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" id="last_name" value="" name="address" placeholder="Address" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="post" name="post" placeholder="Post number" value="" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="company" placeholder="Tel. number" name="tel" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" name="email" class="form-control mb-3" id="email" placeholder="Email" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="url" class="form-control" name="url" id="city" placeholder="Link" value=""  required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="file" class="form-control" name="profile_image"  id="city" placeholder="Zip Code" value="" required>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn amado-btn w-100">Add Shop</button>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="date" class="col-sm-2 col-form-label">Post number</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="post" id="post" placeholder="Post number" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="price" class="col-sm-2 col-form-label">Telephone number</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="tel"  id="tel" placeholder="Phone" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="suspension" class="col-sm-2 col-form-label">Email address</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" name="email" id="email" placeholder="email" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="bikeLink" class="col-sm-2 col-form-label">Link to webpage</label>
-                        <div class="col-sm-10">
-                        <input type="url" class="form-control" id="url" name="url"  placeholder="Url" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="profile_image" class="col-sm-2 col-form-label">Shops profile pic</label>
-                        <div class="col-sm-10">
-                        <input type="file" class="form" id="profile_image" name="profile_image"  placeholder="Image" >
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-dark">Add shop</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
