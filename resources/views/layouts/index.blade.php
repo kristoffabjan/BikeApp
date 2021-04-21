@@ -108,23 +108,6 @@
                             <li class="active"><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('shops') }}">Shops</a></li>
                             <li><a href="">About us</a></li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
                         </ul>
                     </nav>
                             
@@ -135,11 +118,22 @@
                         <a href="{{route('addNewBike')}}" class="btn amado-btn mb-15">Add new bike</a>
                         <a href="{{url('/addShop')}}" class="btn amado-btn mb-15">Add new shop</a>
                     </div>
+
+
+                    <!-- Cart Menu -->
+                    <div class="cart-fav-search mb-100">
+                        <a id="navbarDropdown" class="nav-link " href="{{ route('profile.user', Auth::user()) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <a href="{{ route('logout') }}" class="search-nav" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><img src="img/core-img/search.png" alt=""> Logout</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
                 @endauth
-                <!-- Cart Menu -->
-                <div class="cart-fav-search mb-100">
-                    <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
-                </div>
                 <!-- Social Button -->
                 <div class="social-info d-flex justify-content-between">
                     <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
