@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-7">   
                 <div class="single_product_thumb">
                     <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -105,7 +105,7 @@
                                         <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row ml-1">
                                         <div class="col-sm-10">
                                             <button type="submit" class="btn btn-primary btn-dark">Add images</button>
                                         </div>
@@ -118,6 +118,91 @@
                         </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            @auth
+                @if (!$bike->createdBy(Auth::user(), $bike))
+                    @if (!$bike->hasRated(Auth::user()))
+                    <div class="" id="">
+                        <h2 class="mb-2">Rate this bike:</h2>
+                        <div class="card p-3">
+                            <form action="{{route('rate.bike.form', $bike->id)}}" method="post">
+                                @csrf
+                                <div class="form-group row mb-1">
+                                    <div class="col-auto d-flex mr-2 ">
+                                        <label for="brand" class="mr-1 pt-2">Overal rate: </label>
+                                        <select class="form-select " name="overal" aria-label="Default select example" required>
+                                            <option selected>Open </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-auto d-flex mr-2">
+                                        <label for="brand" class="mr-1 pt-2">Price/performance: </label>
+                                        <select class="form-select" name="pp" aria-label="Default select example" required>
+                                            <option selected>Open </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-auto d-flex">
+                                        <label for="brand" class="mr-1 pt-2">Ascend: </label>
+                                        <select class="form-select " name="ascend" aria-label="Default select example" required>
+                                            <option selected>Open </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>  
+
+                                <div class="form-group row mb-1">
+                                    <div class="col-auto d-flex mr-2">
+                                        <label for="brand" class="mr-1 pt-2">Descend: </label>
+                                        <select class="form-select " name="descend" aria-label="Default select example" required>
+                                            <option selected>Open </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select></div>
+                                    <div class="col-auto d-flex">
+                                        <label for="brand" class="mr-1 pt-2 bold">Agility: </label>
+                                        <select class="form-select ml-4 " name="agility" aria-label="Default select example" required>
+                                            <option selected>Open </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div> 
+
+                                <div class="form-group row p-2">
+                                    <div class="form-row d-flex">
+                                        <label for="exampleFormControlTextarea1">Users opinion</label>
+                                        <textarea class="form-control mb-1" id="uo" name="opinion" rows="4"></textarea>
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary btn-dark">Submit rate</button>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                    </div>
+                    @endif
+                @endif
+            @endauth
         </div>
     </div>
 </div>
