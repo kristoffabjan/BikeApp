@@ -117,7 +117,9 @@
                                     </form>
                                 </th>
                                 <th scope="col">
-                                    <button  name="addtocart" href="{{route('new.test', $bike->id)}}"  value="5" class="btn amado-btn mr-1">Add official test</button>
+                                    @auth
+                                        <button  name="addtocart"  class="btn amado-btn mr-1"><a style="font-size: x-large; color: white" href="{{route('new.test.form', $bike)}}">Add review</a></button>
+                                    @endauth
                                 </th>
                               </tr>
                             </thead>
@@ -141,92 +143,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3">
-
-        </div>
-        <div class="row mb-3 ">
-            <div class="col">
-                @auth
-                @if (!$bike->createdBy(Auth::user(), $bike))
-                    @if (!$bike->hasRated(Auth::user()))
-                    <div class="" id="">
-                        <h2 class="mb-2">Rate this bike:</h2>
-                        <div class="card p-4">
-                            <form action="{{route('rate.bike.form', $bike->id)}}" method="post">
-                                @csrf
-                                <div class="form-group row mb-2 pr-3 pl-3">
-                                    <div class=" d-flex mr-2 mb-1">
-                                        <label for="brand" class="mr-1 pt-2">Overal rate: </label>
-                                        <select class="form-select " name="overal" aria-label="Default select example" required>
-                                            <option selected>Open </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class="d-flex mb-1">
-                                        <label for="brand" class="mr-1 pt-2">Price/performance: </label>
-                                        <select class="form-select" name="pp" aria-label="Default select example" required>
-                                            <option selected>Open </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class=" d-flex mb-1 ">
-                                        <label for="brand" class="mr-1 pt-2">Ascend: </label>
-                                        <select class="form-select " name="ascend" aria-label="Default select example" required>
-                                            <option selected>Open </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class=" d-flex mb-1">
-                                        <label for="brand" class="mr-1 pt-2">Descend: </label>
-                                        <select class="form-select " name="descend" aria-label="Default select example" required>
-                                            <option selected>Open </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class=" d-flex mb-1">
-                                        <label for="brand" class="mr-1 pt-2 ">Agility: </label>
-                                        <select class="form-select ml-4 " name="agility" aria-label="Default select example" required>
-                                            <option selected>Open </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-row d-flex">
-                                        <label for="exampleFormControlTextarea1">Users opinion</label>
-                                        <textarea class="form-control mb-1" id="uo" name="opinion" rows="4"></textarea>
-                                        <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-primary btn-dark">Submit rate</button>
-                                        </div>
-                                    </div>
-
-                                </div> 
-                            </form>
-                        </div>
-                    </div>
-                    @endif
-                @endif
-            @endauth
-            </div>
-        </div>
+        
         <div class="row mt-3">
             <div class="col">
                 <div class="container">

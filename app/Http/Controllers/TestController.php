@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bike;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function insert($bikeId)
+    public function insert(Bike $bike)
     {
         return view('bikes.newTest',[
-            'bikeId' => $bikeId
+            'bike' => $bike
         ]);
     }
 
-    public function create(Request $request, $bikeId)
+    public function create(Request $request, Bike $bike)
     {
         $this->validate($request, [
             'name' => ['required'],
@@ -22,12 +23,12 @@ class TestController extends Controller
         ]);
 
         $request->user()->tests()->create([
-            'bike_id' => $bikeId,
+            'bike_id' => $bike->id,
             'name' => $request->name,
             'magazine' => $request->magazine,
             'url' => $request->url
         ]);
 
-        return redirect()->route('rate.bike', $bikeId);
+        return redirect()->route('rate.bike', $bike);
     }
 }

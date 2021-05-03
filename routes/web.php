@@ -59,8 +59,8 @@ Route::post('/editShopRateData/{rate}/rate/{shop}',[ShopRateController::class, '
 Route::get('/destroyShopRate/{rate}',[ShopRateController::class, 'destroy'])->name('destroy.shop.rate');
 
 
-Route::get('/newTest/{id}',[TestController::class, 'insert'])->name('new.test');
-Route::post('/newTest/{id}',[TestController::class, 'create']);
+Route::get('/newTest/{bike}',[TestController::class, 'insert'])->name('new.test.form');
+Route::post('/newTestCreate/{bike}',[TestController::class, 'create'])->name('new.test');;
 
 
 Route::get('/home', [BikeController::class, 'index']);
