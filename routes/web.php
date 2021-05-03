@@ -36,7 +36,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/profile/{user}', [ProfileController::class, 'userProfile'])->name('profile.user');
 
 Route::get('/ratebike/{bike}',[BikeRateController::class, 'index'])->name('rate.bike');
-Route::post('/ratebike/{id}',[BikeRateController::class, 'store'])->name('rate.bike.form');
+Route::post('/ratebike/{bike}',[BikeRateController::class, 'store'])->name('rate.bike.form');
+Route::get('/ratebikeform/{bike}',[BikeRateController::class, 'rate_form'])->name('rate.bike.open.form');
 Route::get('/editBikeRate/{rate}/rate/{bike}',[BikeRateController::class, 'edit_form'])->name('edit.bike.rate');
 Route::post('/editBikeRateData/{rate}/rate/{bike}',[BikeRateController::class, 'edit'])->name('edit.bike.rate.data');
 Route::get('/destroyBikeRate/{rate}',[BikeRateController::class, 'destroy'])->name('destroy.bike.rate');

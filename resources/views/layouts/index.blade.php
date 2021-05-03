@@ -32,6 +32,11 @@
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
+    
+    <!-- Rates-Carousel  -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{{ asset('design/css/core-style.css') }}">

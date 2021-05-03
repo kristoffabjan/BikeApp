@@ -45,7 +45,7 @@ class BikeRateController extends Controller
         ]);
     }
 
-    public function store(Request $request, $bikeId)
+    public function store(Request $request, Bike $bike)
     {
         $this->validate($request, [
             'overal' => ['required'],
@@ -56,9 +56,10 @@ class BikeRateController extends Controller
             'opinion' => ['required'],
         ]);
 
+        
 
         $request->user()->rates()->create([
-            'bike_id' => $bikeId,
+            'bike_id' => $bike->id,
             'stars' => $request->overal,
             'price_performance' => $request->pp,
             'descend' => $request->descend,
@@ -66,9 +67,11 @@ class BikeRateController extends Controller
             'agility' => $request->agility,
             'opinion' => $request->opinion,
         ]);
+
+       
        
 
-        return redirect()->route('rate.bike', $bikeId);
+        return redirect()->route('rate.bike', $bike);
 
     }
 
@@ -76,6 +79,13 @@ class BikeRateController extends Controller
     {
         $deletedRows = BikeRates::where('id', $rate->id)->delete();
         return back();
+    }
+
+    public function rate_form(Bike $bike)
+    {
+        return view('bikes.rateBike',[
+            'bike' => $bike
+        ]);
     }
 
     public function edit_form(BikeRates $rate, Bike $bike)
