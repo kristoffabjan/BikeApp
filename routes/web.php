@@ -64,6 +64,7 @@ Route::post('/newTestCreate/{bike}',[TestController::class, 'create'])->name('ne
 
 
 Route::get('/home', [BikeController::class, 'index']);
+Route::get('/', [BikeController::class, 'index']);
 Route::get('/', [BikeController::class, 'index'])->name('home');
 Route::get('/newBike', [BikeController::class, 'new_bike'])->name('addNewBike');
 Route::post('/newBike', [BikeController::class, 'store']);
