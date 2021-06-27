@@ -8,7 +8,8 @@
             @foreach ($bikes as $bike)
                 <div class="single-products-catagory clearfix">
                     <a href="{{route('rate.bike', $bike->id)}}">
-                        <img src="/bikes_profile_images/{{$bike->profile_image}}" alt="">
+                        
+                        <img src="{{asset('storage/bikes_profile_images/{{$bike->profile_image}}')}}" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
