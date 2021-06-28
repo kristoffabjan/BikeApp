@@ -8,6 +8,7 @@ use App\Models\ShopImages;
 use App\Models\ShopRates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ShopsController extends Controller
 {
@@ -33,17 +34,20 @@ class ShopsController extends Controller
 
         if ($request->hasFile('profile_image') ) {
             #filename w ext
-            $fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
+            #$fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
             #filename
-            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            #$filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             #EXT
-            $extension = $request->file('profile_image')->getClientOriginalExtension();
+            #$extension = $request->file('profile_image')->getClientOriginalExtension();
             #filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $path = $request->file('profile_image')->storeAs('public/shops_profile_images', $fileNameToStore);
+            #$fileNameToStore = $filename.'_'.time().'.'.$extension;
+            #$path = $request->file('profile_image')->storeAs('public/shops_profile_images', $fileNameToStore);
+            $fileNameToStore = $request->file('profile_image')->store('shop_profile_images', 's3');
         }else {
             $fileNameToStore = "noimage.jpg";   
         }
+
+        Storage::disk('s3')->setVisibility($fileNameToStore, 'public');
 
         
         $request->user()->shops()->create([
@@ -53,7 +57,7 @@ class ShopsController extends Controller
             'tel' => $request->tel,
             'email' => $request->email,
             'url' => $request->url,
-            'profile_image' => $fileNameToStore
+            'profile_image' => Storage::disk('s3')->url($fileNameToStore)
         ]);
 
         return redirect()->route('shops');
@@ -86,20 +90,20 @@ class ShopsController extends Controller
 
             foreach ($request->file('images') as  $image) {
                 #complete filename
-                $fileNameWithExt = $image->getClientOriginalName();
+                #$fileNameWithExt = $image->getClientOriginalName();
                 #filename
-                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                #$filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
                 #EXT
-                $extension = $image->getClientOriginalExtension();
+                #$extension = $image->getClientOriginalExtension();
                 #filename to store
-                $fileNameToStore = $filename.'_'.time().'.'.$extension;
-                $path = $image->storeAs('public/shop_images', $fileNameToStore);
+                $fileNameToStore = $image->store('shop_images', 's3');
+                #$path = $image->storeAs('public/shop_images', $fileNameToStore);
 
-                
+                Storage::disk('s3')->setVisibility($fileNameToStore, 'public');
 
                 $bikeImage = new ShopImages();
                 $bikeImage->shop_id = $shopId;
-                $bikeImage->path = $fileNameToStore;
+                $bikeImage->path = Storage::disk('s3')->url($fileNameToStore);
                 $bikeImage->save();
 
             }

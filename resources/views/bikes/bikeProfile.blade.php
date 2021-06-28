@@ -13,14 +13,14 @@
                             @foreach ($images as $image)
                                 @if ($image == $images[0])
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="/storage/bike_images/{{$image->path}}">
-                                            <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="First slide">
+                                        <a class="gallery_img" href="{{$image->path}}">
+                                            <img class="d-block w-100" src="{{$image->path}}" alt="First slide">
                                         </a>
                                     </div> 
                                 @else
                                 <div class="carousel-item ">
-                                    <a class="gallery_img" href="/storage/bike_images/{{$image->path}}">
-                                        <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="Non-first slide">
+                                    <a class="gallery_img" href="{{$image->path}}">
+                                        <img class="d-block w-100" src="{{$image->path}}" alt="Non-first slide">
                                     </a>
                                 </div> 
                                 @endif

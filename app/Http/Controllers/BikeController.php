@@ -50,6 +50,12 @@ class BikeController extends Controller
             $fileNameToStore = "noimage.jpg";
         }
 
+        #set images to be seen publicly
+        #if you want all files to be public, change filesystems file
+        Storage::disk('s3')->setVisibility($fileNameToStore, 'public');
+
+
+        #dd(Storage::disk('s3')->url($fileNameToStore));
         
         $request->user()->bikes()->create([
             'brand' => $request->brand,
@@ -58,7 +64,7 @@ class BikeController extends Controller
             'price' => $request->price,
             'suspension_range' => $request->suspension_range,
             'url' => $request->url,
-            'profile_image' => Storage::url($fileNameToStore)
+            'profile_image' => Storage::disk('s3')->url($fileNameToStore)
         ]);
 
         return redirect()->route('home');
@@ -76,20 +82,21 @@ class BikeController extends Controller
 
             foreach ($request->file('images') as  $image) {
                 #complete filename
-                $fileNameWithExt = $image->getClientOriginalName();
+                #$fileNameWithExt = $image->getClientOriginalName();
                 #filename
-                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                #$filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
                 #EXT
-                $extension = $image->getClientOriginalExtension();
+                #$extension = $image->getClientOriginalExtension();
                 #filename to store
-                $fileNameToStore = $filename.'_'.time().'.'.$extension;
-                $path = $image->storeAs('public/bike_images', $fileNameToStore);
+                $fileNameToStore = $image->store('bike_images', 's3');
+                #$path = $image->storeAs('public/bike_images', $fileNameToStore);
+                Storage::disk('s3')->setVisibility($fileNameToStore, 'public');
 
                 
 
                 $bikeImage = new BikeImages();
                 $bikeImage->bike_id = $bikeId;
-                $bikeImage->path = $fileNameToStore;
+                $bikeImage->path = Storage::disk('s3')->url($fileNameToStore);
                 $bikeImage->save();
 
             }

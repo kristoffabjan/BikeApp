@@ -10,7 +10,7 @@
                         <div class="account-settings">
                             <div class="user-profile">
                                 <div class="user-avatar">
-                                    <img class="img-fluid" src="/storage/shops_profile_images/{{$shop->profile_image}}" alt="">
+                                    <img class="img-fluid" src="{{$shop->profile_image}}" alt="">
                                 </div>
                                 
                             </div>
@@ -136,11 +136,11 @@
                             @foreach ($images as $image)
                                 @if ($image == $images[0])
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100"  src="/storage/shop_images/{{$image->path}}" alt="First slide">
+                                        <img class="d-block w-100"  src="{{$image->path}}" alt="First slide">
                                     </div> 
                                 @else
                                 <div class="carousel-item ">
-                                    <img class="d-block w-100"   src="/storage/shop_images/{{$image->path}}" alt="First slide">
+                                    <img class="d-block w-100"   src="{{$image->path}}" alt="First slide">
                                 </div> 
                                 @endif
                                 
