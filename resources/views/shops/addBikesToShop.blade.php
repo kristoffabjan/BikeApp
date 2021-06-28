@@ -10,7 +10,7 @@
                 <div class="d-flex mb-4 pl-2 border border-dark rounded" >
                     <div class="mr-3">
                         <div class="user-avatar">
-                            <img class="img-thumbnail" style="max-width: 250px" src="/images/bikes_profile_images/{{$bike->profile_image}}" alt="">
+                            <img class="img-thumbnail" style="max-width: 250px" src="/storage/bikes_profile_images/{{$bike->profile_image}}" alt="">
                         </div>
                     </div>
                     <div class="d-flex-column">

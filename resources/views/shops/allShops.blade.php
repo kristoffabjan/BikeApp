@@ -7,7 +7,7 @@
             @foreach ($shops as $shop)
                 <div class="single-products-catagory clearfix">
                     <a href="{{route('shop.profile', $shop)}}">
-                        <img src="/images/shops_profile_images/{{$shop->profile_image}}" alt="">
+                        <img src="/storage/shops_profile_images/{{$shop->profile_image}}" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>

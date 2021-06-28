@@ -10,14 +10,14 @@
                             @foreach ($images as $image)
                                 @if ($image == $images[0])
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="/images/bike_images/{{$image->path}}">
-                                            <img class="d-block w-100" src="/images/bike_images/{{$image->path}}" alt="First slide">
+                                        <a class="gallery_img" href="/storage/bike_images/{{$image->path}}">
+                                            <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="First slide">
                                         </a>
                                     </div> 
                                 @else
                                 <div class="carousel-item ">
-                                    <a class="gallery_img" href="/images/bike_images/{{$image->path}}">
-                                        <img class="d-block w-100" src="/images/bike_images/{{$image->path}}" alt="Non-first slide">
+                                    <a class="gallery_img" href="/storage/bike_images/{{$image->path}}">
+                                        <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="Non-first slide">
                                     </a>
                                 </div> 
                                 @endif
@@ -138,7 +138,7 @@
                     <div class="account-settings">
                         <div class="user-profile">
                             <div class="user-avatar">
-                                <img class="img-fluid" src="/images/bikes_profile_images/{{$bike->profile_image}}" id="bikeProfileImage" alt="">
+                                <img class="img-fluid" src="/storage/bikes_profile_images/{{$bike->profile_image}}" id="bikeProfileImage" alt="">
                                 <
                             </div>
                             <h3>{{$bike->brand}}</h3>
@@ -222,11 +222,11 @@
                         @foreach ($images as $image)
                             @if ($image == $images[0])
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/images/bike_images/{{$image->path}}" alt="First slide">
+                                    <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="First slide">
                                 </div> 
                             @else
                             <div class="carousel-item ">
-                                <img class="d-block w-100" src="/images/bike_images/{{$image->path}}" alt="First slide">
+                                <img class="d-block w-100" src="/storage/bike_images/{{$image->path}}" alt="First slide">
                             </div> 
                             @endif
                             
