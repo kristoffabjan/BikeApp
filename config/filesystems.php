@@ -44,10 +44,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
+            'key' => env('AWS_ACCESS_KEY_ID', 'AKIAZYN2PEYYUQJUGME5'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY', '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'),
+            'region' => env('AWS_DEFAULT_REGION', 'eu-central-1'),
+            'bucket' => env('AWS_BUCKET', 'bikeapp-laravel-images'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
