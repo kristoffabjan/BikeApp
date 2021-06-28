@@ -6,6 +6,7 @@ use App\Models\Bike;
 use App\Models\BikeImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BikeController extends Controller
 {
@@ -36,14 +37,15 @@ class BikeController extends Controller
 
         if ($request->hasFile('profile_image')) {
             #complete filename
-            $fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
+            #$fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
             #filename
-            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            #$filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             #EXT
-            $extension = $request->file('profile_image')->getClientOriginalExtension();
+            #$extension = $request->file('profile_image')->getClientOriginalExtension();
             #filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $path = $request->file('profile_image')->storeAs('public/bikes_profile_images', $fileNameToStore);
+            #$fileNameToStore = $filename.'_'.time().'.'.$extension;
+            #$path = $request->file('profile_image')->storeAs('public/bikes_profile_images', $fileNameToStore);
+            $fileNameToStore = $request->file('profile_image')->store('bike_profile_images', 's3');
         }else {
             $fileNameToStore = "noimage.jpg";
         }
@@ -56,7 +58,7 @@ class BikeController extends Controller
             'price' => $request->price,
             'suspension_range' => $request->suspension_range,
             'url' => $request->url,
-            'profile_image' => $fileNameToStore
+            'profile_image' => Storage::url($fileNameToStore)
         ]);
 
         return redirect()->route('home');
