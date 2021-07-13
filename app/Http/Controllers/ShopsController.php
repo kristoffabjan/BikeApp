@@ -71,10 +71,14 @@ class ShopsController extends Controller
                 ->get();
         $bikes_at_shop = BikesAtShop::where('shop_id', $shop->id)
                 ->get();
+        $stars = ShopRates::where('shop_id', $shop->id)
+            ->avg('stars');
+            
         return view('shops.shopProfile', [
             'shop' => $shop,
             'rates' => $rates,
             'images' => $images,
+            'stars' => $stars,
             'bikes_at_shop' => $bikes_at_shop
         ]);
     }

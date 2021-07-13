@@ -53,4 +53,11 @@ class ShopRateController extends Controller
         
         return redirect()->route('shop.profile', $shop);
     }
+
+    public function rate_form(Shop $shop)
+    {
+        return view('shops.rateShop',[
+            'shop' => $shop
+        ]);
+    }
 }

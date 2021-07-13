@@ -57,6 +57,7 @@ Route::post('/rateshop/{id}',[ShopRateController::class, 'store'])->name('rate.s
 Route::get('/editShopRate/{rate}/rate/{shop}',[ShopRateController::class, 'edit_form'])->name('edit.shop.rate');
 Route::post('/editShopRateData/{rate}/rate/{shop}',[ShopRateController::class, 'edit'])->name('edit.shop.rate.data');
 Route::get('/destroyShopRate/{rate}',[ShopRateController::class, 'destroy'])->name('destroy.shop.rate');
+Route::get('/rateshopform/{shop}',[ShopRateController::class, 'rate_form'])->name('rate.shop.open.form');
 
 
 Route::get('/newTest/{bike}',[TestController::class, 'insert'])->name('new.test.form');
