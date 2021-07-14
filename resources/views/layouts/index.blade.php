@@ -87,7 +87,7 @@
             </div>
 
             <!-- Header Area Start -->
-            <header class="header-area clearfix">
+            <header class="header-area clearfix " style="border-right: 10px solid #fbb710">
                 <!-- Close Icon -->
                 <div class="nav-close">
                     <i class="fa fa-close" aria-hidden="true"></i>
@@ -119,21 +119,21 @@
                         <ul>
                             <li class="active"><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('shops') }}">Shops</a></li>
-                            <li><a href="">About us</a></li>
+                            <li><a href="{{ route('about') }}">About us</a></li>
                         </ul>
                     </nav>
                             
                 @endguest
                 <!-- Button Group -->
                 @auth
-                    <div class="amado-btn-group mt-30 mb-100">
+                    <div class="amado-btn-group mt-30 mb-30">
                         <a href="{{route('addNewBike')}}" class="btn amado-btn mb-15">Add new bike</a>
                         <a href="{{url('/addShop')}}" class="btn amado-btn mb-15">Add new shop</a>
                     </div>
 
 
                     <!-- Cart Menu -->
-                    <div class="cart-fav-search mb-100">
+                    <div class="cart-fav-search mb-30">
                         <a id="navbarDropdown" class="nav-link " href="{{ route('profile.user', Auth::user()) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
@@ -148,10 +148,9 @@
                 @endauth
                 <!-- Social Button -->
                 <div class="social-info d-flex justify-content-between">
-                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/kristoffabjan/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/pinkbikecom/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/ogburaz"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 </div>
             </header>
             <!-- Header Area End -->
@@ -174,8 +173,8 @@
                     <!-- Newsletter Text -->
                     <div class="col-12 col-lg-6 col-xl-7">
                         <div class="newsletter-text mb-100">
-                            <h2>Subscribe for a <span>25% Discount</span></h2>
-                            <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                            <h2>Subscribe for  <span>latest news!</span></h2>
+                            <p>Stay in touch with MTB community</p>
                         </div>
                     </div>
                     <!-- Newsletter Form -->
@@ -217,19 +216,13 @@
                                     <div class="collapse navbar-collapse" id="footerNavContent">
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="index.html">Home</a>
+                                                <a class="nav-link" href="{{ route('home') }}">Home</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="shop.html">Shop</a>
+                                                <a class="nav-link" href="{{ route('shops') }}">Shops</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="product-details.html">Product</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cart.html">Cart</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="checkout.html">Checkout</a>
+                                                <a class="nav-link" href="{{ route('about') }}">About</a>
                                             </li>
                                         </ul>
                                     </div>

@@ -23,4 +23,6 @@ class BikesAtShop extends Model
     {
         return $this->belongsTo(Bike::class);
     }
+
+    
 }

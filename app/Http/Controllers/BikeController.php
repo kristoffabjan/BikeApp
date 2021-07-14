@@ -107,7 +107,11 @@ class BikeController extends Controller
     public function destroy(Bike $bike)
     {
         $deletedRows = Bike::where('id', $bike->id)->delete();
-        return back();
+        $bikes = Bike::get();
+
+        return view('layouts.home',[
+            'bikes' => $bikes
+        ]);
     }
 
     public function edit_form(Bike $bike)

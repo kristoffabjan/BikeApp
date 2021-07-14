@@ -34,6 +34,7 @@ Route::get('/index', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/profile/{user}', [ProfileController::class, 'userProfile'])->name('profile.user');
+Route::get('/about', [ProfileController::class, 'about'])->name('about');
 
 Route::get('/ratebike/{bike}',[BikeRateController::class, 'index'])->name('rate.bike');
 Route::post('/ratebike/{bike}',[BikeRateController::class, 'store'])->name('rate.bike.form');
@@ -78,6 +79,6 @@ Route::post('/editBikeData/{bike}', [BikeController::class, 'edit'])->name('edit
 
 Route::get('/bikeToShop/{shop}', [BikesAtShopContoller::class, 'index'])->name('bikeToShop');
 Route::get('/bikeToShop/{shop}/{bike}', [BikesAtShopContoller::class, 'store'])->name('bikeToShop.add');
-Route::get('/bikeToShop/{shop}/bike/{bikeShop}', [BikesAtShopContoller::class, 'destroyEntry'])->name('bikeToShop.destroy');
+Route::get('/bikeToShop/{shop}/bike/{bike}', [BikesAtShopContoller::class, 'destroyEntry'])->name('bikeToShop.destroy');
 
 Auth::routes();

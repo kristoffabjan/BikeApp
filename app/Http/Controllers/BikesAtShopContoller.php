@@ -17,10 +17,12 @@ class BikesAtShopContoller extends Controller
 
     public function index(Shop $shop)
     {
+        $bikes_at_shop = BikesAtShop::where('shop_id', $shop->id)->get();
         $bikes = Bike::get();
         return view('shops/addBikesToShop',[
             'shop' => $shop,
-            'bikes' => $bikes
+            'bikes' => $bikes,
+            'bikes_at_shop' => $bikes_at_shop
         ]);
     }
 
@@ -36,8 +38,9 @@ class BikesAtShopContoller extends Controller
 
     public function destroyEntry(Shop $shop, Bike $bike)
     {
-        
-        $deletedRows = BikesAtShop::where('shop_id', $shop->id)->where('bike_id', $bike->id)->delete();
-        return back();
+        $match = ['shop_id' => $shop->id, 'bike_id' => $bike->id];
+        $deletedRows = BikesAtShop::where($match)->delete();
+        return redirect()->route('shop.profile', $shop->id);
+        #back();
     }
 }

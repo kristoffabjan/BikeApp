@@ -33,6 +33,16 @@ class Shop extends Model
         return $this->rates->contains('user_id', $user->id);
     }
 
+    public function has_bike(Bike $bike)
+    {
+        return $this->bikes->contains('bike_id', $bike->id);
+    }
+
+    public function bikes()
+    {
+        return $this->hasMany(BikesAtShop::class);
+    }
+
     public function rates()
     {
         return $this->hasMany(ShopRates::class);

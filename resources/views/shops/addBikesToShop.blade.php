@@ -1,12 +1,13 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 d-flex-col">
-            <h2>Add bikes that are currently available in your shop:</h2>
+<div class="row ">
+    <div class="col-md-12 d-flex-col mt-3">
+        <h2>Add bikes that are currently available in your shop:</h2>
 
-            @foreach ($bikes as $bike)
+        @foreach ($bikes as $bike)
+            <!-- do not show bikes that are already in shop-->
+            @if (!$shop->has_bike($bike))
                 <div class="d-flex mb-4 pl-2 border border-dark rounded" >
                     <div class="mr-3">
                         <div class="user-avatar">
@@ -27,25 +28,14 @@
                         </div>
                     </div>
                     <div class="ml-auto d-flex justify-content-center align-items-center pr-4" >
-                        <a class="btn btn-dark btn-lg " href="{{route('bikeToShop.add', [$shop, $bike])}}" onclick="hideBike()" role="button"
+                        <a class="btn btn-dark btn-lg " href="{{route('bikeToShop.add', [$shop, $bike])}}"  role="button"
                         id="addButton">Add</a>
                     </div>
                 </div>
-            @endforeach
+            @endif
+        @endforeach
     </div>
 </div>
-<script>
-    function hideBike() {
-        var list = document.getElementById("addButton");
-        var flag = 0;
-    
-        if (list.style.display === "block" && (flag===0)){
-            list.style.visibility = "none";
-            flag = 1;
-        }else{
-            list.style.visibility = "none";
-        }
-    }
-</script>
+
 @endsection
 
