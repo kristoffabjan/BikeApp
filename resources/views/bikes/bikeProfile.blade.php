@@ -99,30 +99,30 @@
                         
 
                         <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">
-                                    <form action="{{route('bikeImages', $bike->id)}}" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group d-flex flex-column">
-                                            <div class="col-sm-10">
-                                            <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                            @auth
+                                <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <form action="{{route('bikeImages', $bike->id)}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group d-flex flex-column">
+                                                <div class="col-sm-10">
+                                                <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row ml-1">
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                            <div class="form-group row ml-1">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </th>
-                                <th scope="col">
-                                    @auth
+                                        </form>
+                                    </th>
+                                    <th scope="col">
                                         <button  name="addtocart"  class="btn amado-btn mr-1"><a style="font-size: x-large; color: white" href="{{route('new.test.form', $bike)}}">Add review</a></button>
-                                    @endauth
-                                </th>
-                              </tr>
-                            </thead>
+                                    </th>
+                                </tr>
+                                </thead>
+                            @endauth
                             <tbody>
                                 @auth
                                     @if (!$bike->createdBy(Auth::user(), $bike))
@@ -207,8 +207,8 @@
                                                     <div class="carousel-item active">
                                                         <div class="card" style="background-color: #fbb710; width: 20rem;height:25rem; color:white">
                                                             <div class="card-body">
-                                                                <a href="{{route('profile.user', $bike->user)}}">
-                                                                    <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</p></a>
+                                                                <a href="{{route('profile.user', $rate->user)}}">
+                                                                    <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$rate->user->name}}</p></a>
                                                             <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
                                                             <ul>
                                                                 <li><p>Price-performace: {{$rate->price_performance}}</p></li>

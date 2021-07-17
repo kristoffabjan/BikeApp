@@ -12,7 +12,7 @@
 
 
                         <div class="form-group row">
-                            <label for="brand" class="col-sm-2 col-form-label ">Overal rate</label>
+                            <label for="brand" class="col-sm-2 col-form-label ">Overallrate</label>
                             <select class="form-select ml-4" name="stars" aria-label="Default select example" >
                                 <option selected>Open this select menu</option>
                                 <option value="1">1</option>

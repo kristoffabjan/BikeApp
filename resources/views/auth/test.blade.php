@@ -256,7 +256,7 @@
 
 
                                 <div class="form-group row">
-                                    <label for="brand" class="col-sm-2 col-form-label ">Overal rate</label>
+                                    <label for="brand" class="col-sm-2 col-form-label ">Overall rate</label>
                                     <select class="form-select ml-4" name="overal" aria-label="Default select example" required>
                                         <option selected>Open this select menu</option>
                                         <option value="1">1</option>
@@ -340,7 +340,7 @@
                         <div class="d-flex flex-column">
                             <h3>Posted by: {{$rate->user->name}}</h3>
                             <ul>
-                                <li>Overal rate: {{$rate->stars}}</li>
+                                <li>Overall rate: {{$rate->stars}}</li>
                                 <li>Price-performance:  {{$rate->price_performance}}</li>
                                 <li>Descending: {{$rate->descend}}</li>
                                 <li>Ascending: {{$rate->ascend}}</li>

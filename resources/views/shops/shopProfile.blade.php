@@ -88,29 +88,31 @@
                         
 
                         <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">
-                                    <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group d-flex flex-column">
-                                            <div class="col-sm-10">
-                                            <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                            @auth
+                                <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group d-flex flex-column">
+                                                <div class="col-sm-10">
+                                                <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row ml-1">
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                            <div class="form-group row ml-1">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </th>
-                                <th scope="col">
-                                    <h3>Add bikes to shop:</h3>
-                                    <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
-                                </th>
-                              </tr>
-                            </thead>
+                                        </form>
+                                    </th>
+                                    <th scope="col">
+                                        <h3>Add bikes to shop:</h3>
+                                        <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
+                                    </th>
+                                </tr>
+                                </thead>
+                            @endauth    
                             <tbody>
                                 @auth
                                     @if (!$shop->createdBy(Auth::user(), $shop))

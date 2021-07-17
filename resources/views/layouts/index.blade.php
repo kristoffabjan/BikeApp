@@ -111,7 +111,7 @@
                         @if (Route::has('register'))
                         <li><a href="{{ route('register') }}">Register</a></li>
                         @endif
-                        <li><a href="">About us</a></li>
+                        <li><a href="{{ route('about') }}">About us</a></li>
                     </ul>
                 </nav>
                 @else
