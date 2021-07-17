@@ -163,7 +163,7 @@
                                                                     <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</p></a>
                                                             <ul>
                                                                 <li><p>Article: {{$test->name}}</p></li>
-                                                                <li><a href="{{$test->url}}"><strong>URL</strong></a></li>
+                                                                <button class="btn btn-secondary"> <a href="{{$test->url}}">URL</a></button>
                                                             </ul>
                                                             </div>
                                                         </div>
