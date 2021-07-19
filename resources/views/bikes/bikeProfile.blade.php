@@ -148,112 +148,212 @@
             <div class="col">
                 <div class="container">
                     <div class="row">
-                            <div class="d-flex justify-content-center">
-                                <div class="mr-3 d-flex flex-column">
-                                    <h2><strong>Reviews</strong></h2>
-                                    <div id="product_details_slider2" class="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner">
-                
-                                            @foreach ($tests as $test)
-                                                @if ($test == $tests[0])
-                                                    <div class="carousel-item active">
-                                                        <div class="card" style="background-color: #fbb710; width: 20rem; height:25rem;color:white">
-                                                            <div class="card-body">
-                                                                <a href="{{route('profile.user', $bike->user)}}">
-                                                                    <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</p></a>
-                                                            <ul>
-                                                                <li><p>Article: {{$test->name}}</p></li>
-                                                                <button class="btn btn-secondary"> <a href="{{$test->url}}">URL</a></button>
-                                                            </ul>
-                                                            </div>
+                        <div class="d-flex justify-content-center">
+
+                            @if ( $tests->count() > 0 )
+                            <div class="mr-3 d-flex flex-column">
+                                <h2><strong>Reviews:</strong></h2>
+                                <div id="product_details_slider2" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+            
+                                        @foreach ($tests as $test)
+                                            @if ($test == $tests[0])
+                                                <div class="carousel-item active">
+                                                    <div class="card" style="background-color: #fbb710; width: 20rem; height:25rem;color:white">
+                                                        <div class="card-body">
+                                                            <a href="{{route('profile.user', $bike->user)}}">
+                                                                <h5 class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</h5></a>
+                                                        <ul>
+                                                            <li><p>Article: {{$test->name}}</p></li>
+                                                            <button class="btn btn-secondary"> <a href="{{$test->url}}">URL</a></button>
+                                                        </ul>
                                                         </div>
-                                                    </div> 
-                                                @else
-                                                    <div class="carousel-item ">
-                                                        <div class="card" style="background-color: #fbb710; width: 20rem;height:25rem; color:white">
-                                                            <div class="card-body">
-                                                                <a href="{{route('profile.user', $bike->user)}}">
-                                                                    <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</p></a>
-                                                            <ul>
-                                                                <li><p>Article: {{$test->name}}</p></li>
-                                                                <li><a href="{{$test->url}}">URL</a></li>
-                                                            </ul>
-                                                            </div>
+                                                    </div>
+                                                </div> 
+                                            @else
+                                                <div class="carousel-item ">
+                                                    <div class="card" style="background-color: #fbb710; width: 20rem;height:25rem; color:white">
+                                                        <div class="card-body">
+                                                            <a href="{{route('profile.user', $bike->user)}}">
+                                                                <h5 class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</h5></a>
+                                                        <ul>
+                                                            <li><p>Article: {{$test->name}}</p></li>
+                                                            <li><a href="{{$test->url}}">URL</a></li>
+                                                        </ul>
                                                         </div>
-                                                    </div> 
-                                                @endif
-                                            
-                                            @endforeach
-                
-                                            <a class="carousel-control-prev" href="#product_details_slider2" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#product_details_slider2" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single_product_thumb d-flex flex-column">
-                                    <h2><strong>Ratings</strong></h2>
-                                    <div id="product_details_slider1" class="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner">
-                
-                                            @foreach ($rates as $rate)
-                                                @if ($rate == $rates[0])
-                                                    <div class="carousel-item active">
-                                                        <div class="card" style="background-color: #fbb710; width: 20rem;height:25rem; color:white">
-                                                            <div class="card-body">
-                                                                <a href="{{route('profile.user', $rate->user)}}">
-                                                                    <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$rate->user->name}}</p></a>
-                                                            <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
-                                                            <ul>
-                                                                <li><p>Price-performace: {{$rate->price_performance}}</p></li>
-                                                                <li><p>Descend: {{$rate->descend}}</p></li>
-                                                                <li><p>Ascend: {{$rate->ascend}}</p></li>
-                                                                <li><p>Agility: {{$rate->agility}}</p></li>
-                                                                <li><p>Opinion: {{$rate->opinion}}</p></li>
-                                                            </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div> 
-                                                @else
-                                                    <div class="carousel-item ">
-                                                        <div class="card" style="background-color: #fbb710; height:25rem;width: 20rem">
-                                                            <div class="card-body">
-                                                                <a href="{{route('profile.user', $bike->user)}}">
-                                                                    <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</p></a>
-                                                            <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
-                                                            <ul>
-                                                                <li><p>Price-performace: {{$rate->price_performance}}</p></li>
-                                                                <li><p>Descend: {{$rate->descend}}</p></li>
-                                                                <li><p>Ascend: {{$rate->ascend}}</p></li>
-                                                                <li><p>Agility: {{$rate->agility}}</p></li>
-                                                                <li><p>Opinion: {{$rate->opinion}}</p></li>
-                                                            </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div> 
-                                                @endif
-                                            
-                                            @endforeach
-                
-                                            <a class="carousel-control-prev" href="#product_details_slider1" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#product_details_slider1" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                
-                                        </div>
+                                                    </div>
+                                                </div> 
+                                            @endif
+                                        
+                                        @endforeach
+            
+                                        <a class="carousel-control-prev" href="#product_details_slider2" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#product_details_slider2" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+            
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            <div class="single_product_thumb d-flex flex-column">
+                                <h2><strong>Tests:</strong></h2>
+                                <h5>
+                                    No magazine tests yet
+                                </h5>
+                            </div>
+                            @endif
+
+                            @if ( $rates->count() > 0 )
+                            <div class="single_product_thumb d-flex flex-column mr-3">
+                                <h2><strong>Ratings:</strong></h2>
+                                <div id="product_details_slider1" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+            
+                                        @foreach ($rates as $rate)
+                                            @if ($rate == $rates[0])
+                                                <div class="carousel-item active">
+                                                    <div class="card" style="background-color: #fbb710; width: 20rem;height:25rem; color:white">
+                                                        <div class="card-body">
+                                                            <a href="{{route('profile.user', $rate->user)}}">
+                                                                <h5 class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$rate->user->name}}</h5></a>
+                                                        <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
+                                                        <ul>
+                                                            <li><p>Price-performace: {{$rate->price_performance}}</p></li>
+                                                            <li><p>Descend: {{$rate->descend}}</p></li>
+                                                            <li><p>Ascend: {{$rate->ascend}}</p></li>
+                                                            <li><p>Agility: {{$rate->agility}}</p></li>
+                                                            <li><p>Opinion: {{$rate->opinion}}</p></li>
+                                                        </ul>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            @else
+                                                <div class="carousel-item ">
+                                                    <div class="card" style="background-color: #fbb710; height:25rem;width: 20rem">
+                                                        <div class="card-body">
+                                                            <a href="{{route('profile.user', $rate->user)}}">
+                                                                <h5 class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$rate->user->name}}</h5></a>
+                                                        <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
+                                                        <ul>
+                                                            <li><p>Price-performace: {{$rate->price_performance}}</p></li>
+                                                            <li><p>Descend: {{$rate->descend}}</p></li>
+                                                            <li><p>Ascend: {{$rate->ascend}}</p></li>
+                                                            <li><p>Agility: {{$rate->agility}}</p></li>
+                                                            <li><p>Opinion: {{$rate->opinion}}</p></li>
+                                                        </ul>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            @endif
+                                        
+                                        @endforeach
+            
+                                        <a class="carousel-control-prev" href="#product_details_slider1" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#product_details_slider1" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+            
+                                    </div>
+                                </div>
+                            </div>
+                            @else
+                                <div class="single_product_thumb d-flex flex-column">
+                                    <h2><strong>Rates:</strong></h2>
+                                    <h5>
+                                        No rates yet
+                                    </h5>
+                                </div>
+                            @endif
+
+                            @if ( $shops->count() > 0)
+                                <div class="single_product_thumb d-flex flex-column">
+                                    <h2><strong>Available at:</strong></h2>
+                                    <div id="product_details_slider3" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                
+                                            @foreach ($shops as $shop)
+                                                @if ($shop == $shops[0])
+                                                    <div class="carousel-item active">
+                                                        <div class="card" style="background-color: #3c3c3c; width: 20rem;height:25rem; color:white">
+                                                            <div class="card-body" style="color: #fbb710">
+                                                                <a href="">
+                                                                    <h5 class=" mb-2 " style="color: #fbb710"> 
+                                                                        <i class="fa fa-user pr-2" aria-hidden="true"></i> 
+                                                                        <strong>
+                                                                            Shop:{{$shop->shop->name}}
+                                                                        </strong>
+                                                                    </h5>
+                                                                </a>
+                                                                <ul>
+                                                                    <li><p>Address: {{$shop->shop->address}}</p></li>
+                                                                    <li><p>Post: {{$shop->shop->post}}</p></li>
+                                                                    <li><p>Phone: {{$shop->shop->tel}}</p></li>
+                                                                    <li><p>Email: {{$shop->shop->email}}</p></li>
+                                                                </ul>
+                                                                <button  name="addtocart" style="font-size: x-large" value="5" class="btn amado-btn btn-md btn-block"> 
+                                                                    <a style="font-size: x-large; color: white" href="{{route('shop.profile', $shop->shop)}}">Go to shop <i class="fa fa-home"></i></a> 
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                @else
+                                                    <div class="carousel-item ">
+                                                        <div class="card" style="background-color: #3c3c3c; width: 20rem;height:25rem; color:white">
+                                                            <div class="card-body" style="color: #fbb710">
+                                                                <a href="">
+                                                                    <h5 class="mb-2" style="color: #fbb710"> 
+                                                                        <i class="fa fa-user pr-2" aria-hidden="true"></i> 
+                                                                        <strong>
+                                                                            Shop:{{$shop->shop->name}}
+                                                                        </strong>
+                                                                    </h5>
+                                                                </a>
+                                                                <ul>
+                                                                    <li><p>Address: {{$shop->shop->address}}</p></li>
+                                                                    <li><p>Post: {{$shop->shop->post}}</p></li>
+                                                                    <li><p>Phone: {{$shop->shop->tel}}</p></li>
+                                                                    <li><p>Email: {{$shop->shop->email}}</p></li>
+                                                                </ul>
+                                                                <button  name="addtocart" style="font-size: x-large" value="5" class="btn amado-btn btn-md btn-block"> 
+                                                                    <a style="font-size: x-large; color: white" href="{{route('shop.profile', $shop->shop)}}">Go to shop <i class="fa fa-home"></i></a> 
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                @endif
+                                            
+                                            @endforeach
+                
+                                            <a class="carousel-control-prev" href="#product_details_slider3" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#product_details_slider3" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="single_product_thumb d-flex flex-column">
+                                    <h2><strong>Shops</strong></h2>
+                                    <h5>
+                                        Bike is not available in any shop
+                                    </h5>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bike;
 use App\Models\BikeImages;
 use App\Models\BikeRates;
+use App\Models\BikesAtShop;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,9 @@ class BikeRateController extends Controller
                 ->get();
         $images = BikeImages::where('bike_id', $bike->id)
                 ->get();
-
+        $shops = BikesAtShop::where('bike_id', $bike->id)->get();
+        $zero = 0;
+        #dd($shops->count());
 
         return view('bikes.bikeProfile', [
             'bike'=> $bike,
@@ -41,7 +44,9 @@ class BikeRateController extends Controller
             'descend' => $descend,
             'agility' => $agility,
             'tests' => $tests,
-            'images' => $images
+            'images' => $images,
+            'shops' => $shops,
+            'zero' => $zero
         ]);
     }
 
