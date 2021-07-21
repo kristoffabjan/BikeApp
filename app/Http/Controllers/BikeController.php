@@ -98,16 +98,27 @@ class BikeController extends Controller
 
     public function bike_attributes(Request $request)
     {
+        $bikes_all = Bike::get();
+        $just_brands = $bikes_all->unique('brand');
         $brands = array();
+
+        #select just wanted brands
         foreach ($request->all() as $key => $value) {
             if ($key > 0) {
                 array_push($brands, $value);
             }
         }
-        $bike_brands= Bike::whereIn('brand', $brands)->get();
-        $bikes_all = Bike::get();
-        $brands = $bikes_all->unique('brand');
 
+        #show all bikes if no brand is chosen
+        #$bike_brands are bikes to be shown on home page
+        if (count($brands) > 0) {
+            $bike_brands = Bike::whereIn('brand', $brands)->get();
+        }else {
+            $bike_brands = $bikes_all;
+        }
+        
+        
+        #from price cant bi higher than to price
         if (($request->from_price >= $request->to_price) || ($request->from_sus >= $request->to_sus)) {
             return $this->index();
         }else {
@@ -117,7 +128,7 @@ class BikeController extends Controller
                 ->where('price', '<', $request->to_price);
             return view('layouts.home', [
                 'bikes' => $bikes,
-                'brands' => $brands
+                'brands' => $just_brands
             ]);    
         }
     }
