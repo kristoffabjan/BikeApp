@@ -74,6 +74,9 @@ Route::post('/bikeImages/{id}', [BikeController::class, 'storeImages'])->name('b
 Route::get('/deleteBike/{bike}', [BikeController::class, 'destroy'])->name('delete.bike');
 Route::get('/editBike/{bike}', [BikeController::class, 'edit_form'])->name('edit.bike');
 Route::post('/editBikeData/{bike}', [BikeController::class, 'edit'])->name('edit.bike.data');
+Route::post('/sortBikes', [BikeController::class, 'sort'])->name('sort.bikes');
+Route::post('/bike_attributes', [BikeController::class, 'bike_attributes'])->name('sort.bikes.attributes');
+
 
 
 

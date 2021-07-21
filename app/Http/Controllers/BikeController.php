@@ -4,22 +4,122 @@ namespace App\Http\Controllers;
 
 use App\Models\Bike;
 use App\Models\BikeImages;
+use App\Models\BikeRates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class BikeController extends Controller
 {
     public function index(){
         $bikes = Bike::get();
+        $brands = $bikes->unique('brand');
 
         return view('layouts.home',[
-            'bikes' => $bikes
+            'bikes' => $bikes,
+            'brands' => $brands
         ]);
     }
 
     public function new_bike(){
         return view('newBike');
+    }
+
+    public function sort(Request $request)
+    {
+        $bikes = Bike::get();
+        $brands = $bikes->unique('brand');
+        #dd("heree");
+        switch ($request->sort) {
+            case 'old':
+                $sorted = $bikes->sortByDesc('release_date');
+                return view('layouts.home', [
+                    'bikes' => $sorted,
+                    'brands' => $brands
+                ]);
+                break;
+
+            case 'new':
+                $sorted1 = $bikes->sortBy('release_date');
+                return view('layouts.home', [
+                    'bikes' => $sorted1,
+                    'brands' => $brands
+                ]);
+                break;
+
+            case 'top':
+                $joined = DB::table('bikeRates')
+                    ->selectRaw(' bike_id,  AVG(stars) as stars')
+                    ->join('bikes', 'bikeRates.bike_id', '=', 'bikes.id')
+                    ->groupBy('bike_id')
+                    ->orderBy('stars', 'desc')
+                    ->get();
+
+                $sorted = $joined->pluck('bike_id');
+                $top_bikes = collect();
+
+                #top bikes
+                foreach ($sorted as $key => $value) {
+                    $top_bike = Bike::where('id', $value)->get();
+                    $top_bikes = $top_bikes->merge($top_bike);
+                }
+
+                #dd($top_bikes);
+
+                return view('layouts.home', [
+                    'bikes' => $top_bikes,
+                    'brands' => $brands
+                ]);
+                break;
+
+            case 'expensive':
+                $sorted2 = $bikes->sortByDesc('price');
+                return view('layouts.home', [
+                    'bikes' => $sorted2,
+                    'brands' => $brands
+                ]);
+                break;
+
+            case 'cheap':
+                $sorted3 = $bikes->sortBy('price');
+                return view('layouts.home', [
+                    'bikes' => $sorted3,
+                    'brands' => $brands
+                ]);
+                break;
+            
+            default:
+                return $this->index();
+                break;
+        }
+        
+    }
+
+    public function bike_attributes(Request $request)
+    {
+        $brands = array();
+        foreach ($request->all() as $key => $value) {
+            if ($key > 0) {
+                array_push($brands, $value);
+            }
+        }
+        $bike_brands= Bike::whereIn('brand', $brands)->get();
+        $bikes_all = Bike::get();
+        $brands = $bikes_all->unique('brand');
+
+        if (($request->from_price >= $request->to_price) || ($request->from_sus >= $request->to_sus)) {
+            return $this->index();
+        }else {
+            $bikes = $bike_brands->where('suspension_range', '>', $request->from_sus)
+                ->where('suspension_range', '<', $request->to_sus)
+                ->where('price', '>', $request->from_price)
+                ->where('price', '<', $request->to_price);
+            return view('layouts.home', [
+                'bikes' => $bikes,
+                'brands' => $brands
+            ]);    
+        }
     }
 
     public function store(Request $request){

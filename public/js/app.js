@@ -49112,6 +49112,8 @@ function checkExpression (exp, text, warn, range) {
   }
 }
 
+
+
 function checkFunctionParameterExpression (exp, text, warn, range) {
   try {
     new Function(exp, '');

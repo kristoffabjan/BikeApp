@@ -32,7 +32,7 @@ class BikeRateController extends Controller
         $images = BikeImages::where('bike_id', $bike->id)
                 ->get();
         $shops = BikesAtShop::where('bike_id', $bike->id)->get();
-        $zero = 0;
+        
         #dd($shops->count());
 
         return view('bikes.bikeProfile', [
@@ -45,8 +45,7 @@ class BikeRateController extends Controller
             'agility' => $agility,
             'tests' => $tests,
             'images' => $images,
-            'shops' => $shops,
-            'zero' => $zero
+            'shops' => $shops
         ]);
     }
 
