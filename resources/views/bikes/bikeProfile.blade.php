@@ -248,7 +248,8 @@
                                                             <h5 class="avaibility"><i class="fa fa-user pr-2 " aria-hidden="true"></i>{{$rate->user->name}}</h5>
                                                         </a>
                                                     </div>
-                                                    @if ($rate->createdBy(Auth::user(), $rate))
+                                                    @auth
+                                                        @if ($rate->createdBy(Auth::user(), $rate))
                                                         <div class="d-flex ">
                                                             <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
                                                                 <a style=" color: white" class="h6" href="{{route('edit.bike.rate', [$rate, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
@@ -258,7 +259,8 @@
                                                                 <a style=" color: white" class="h6" href="{{route('destroy.bike.rate', $rate)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
                                                             </button>
                                                         </div>
-                                                    @endif
+                                                        @endif
+                                                    @endauth
                                                 </div>
                                                 
                                                 <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
@@ -282,7 +284,8 @@
                                                             <h5 class="avaibility"><i class="fa fa-user pr-2 " aria-hidden="true"></i>{{$rate->user->name}}</h5>
                                                         </a>
                                                     </div>
-                                                    @if ($rate->createdBy(Auth::user(), $rate))
+                                                    @auth
+                                                        @if ($rate->createdBy(Auth::user(), $rate))
                                                         <div class="d-flex ">
                                                             <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
                                                                 <a style=" color: white" class="h6" href="{{route('edit.bike.rate', [$rate, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
@@ -292,7 +295,8 @@
                                                                 <a style=" color: white" class="h6" href="{{route('destroy.bike.rate', $rate)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
                                                             </button>
                                                         </div>
-                                                    @endif
+                                                        @endif
+                                                    @endauth
                                                 </div>
                                                 
                                                 <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
