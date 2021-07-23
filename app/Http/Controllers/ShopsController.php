@@ -118,7 +118,7 @@ class ShopsController extends Controller
     public function destroy(Shop $shop)
     {
         $deletedRows = Shop::where('id', $shop->id)->delete();
-        return back();
+        return $this->index();
     }
 
     public function edit_form(Shop $shop)

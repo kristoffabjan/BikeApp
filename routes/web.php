@@ -62,7 +62,10 @@ Route::get('/rateshopform/{shop}',[ShopRateController::class, 'rate_form'])->nam
 
 
 Route::get('/newTest/{bike}',[TestController::class, 'insert'])->name('new.test.form');
-Route::post('/newTestCreate/{bike}',[TestController::class, 'create'])->name('new.test');;
+Route::post('/newTestCreate/{bike}',[TestController::class, 'create'])->name('new.test');
+Route::get('/editTestForm/{test}/bike/{bike}',[TestController::class, 'edit_test_form'])->name('edit.test.form');
+Route::post('/editTest/{test}/bike/{bike}',[TestController::class, 'edit_test'])->name('edit.test');
+Route::get('/destroy/{test}',[TestController::class, 'destroy'])->name('delete.test');
 
 
 Route::get('/home', [BikeController::class, 'index']);

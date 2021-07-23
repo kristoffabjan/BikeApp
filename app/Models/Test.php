@@ -24,4 +24,13 @@ class Test extends Model
     {
         return $this->belongsTo(Bike::class);
     }
+
+    public function createdBy(User $user, Test $test)
+    {
+        if ($test->user_id === $user->id) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

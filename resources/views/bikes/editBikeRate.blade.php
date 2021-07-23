@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 d-flex-col">
-            <h2 class="mb-2">Edit bike data:</h2>
+    <div class="row ">
+        <div class="col">
+            <h2 class="mb-2 mt-30">Edit bike data:</h2>
             <div class="card p-3 mb-3">
                 <form action="{{route('edit.bike.rate.data', [$rate, $bike])}}" method="post">
                     @csrf
@@ -12,7 +12,7 @@
 
 
                         <div class="form-group row">
-                            <label for="brand" class="col-sm-2 col-form-label ">Overallrate</label>
+                            <label for="brand" class="col-sm-2 col-form-label ">Overall rate</label>
                             <select class="form-select ml-4" name="stars" aria-label="Default select example" >
                                 <option selected>Open this select menu</option>
                                 <option value="1">1</option>

@@ -8,10 +8,10 @@
                 <div class="checkout_details_area mt-20 clearfix">
 
                     <div class="cart-title">
-                        <h2>Add new official bike magazine test:</h2>
+                        <h2>Edit official magazine test:</h2>
                     </div>
 
-                    <form action="{{route('new.test', $bike)}}" method="post" >
+                    <form action="{{route('edit.test', [$test, $bike])}}" method="post" >
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Article name:</label>
@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn amado-btn mb-15">
-                                    Add
+                                    Edit
                                 </button>
                             </div>
                         </div>
