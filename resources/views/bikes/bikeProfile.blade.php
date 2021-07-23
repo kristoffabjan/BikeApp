@@ -152,17 +152,19 @@
                                                             <h5 class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$test->user->name}}</h5>
                                                         </a>
                                                     </div>
-                                                    @if ( $test->createdBy( Auth::user(), $test) )
-                                                        <div class="d-flex">
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                                                <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
-                                                            </button>
+                                                    @auth
+                                                        @if ( $test->createdBy( Auth::user(), $test) )
+                                                            <div class="d-flex">
+                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                                                    <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
+                                                                </button>
 
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                                                <a style=" color: white" class="h6" href="{{ route('delete.test', $test) }}">Delete<i class="fa fa-edit ml-1"></i></a> 
-                                                            </button>
-                                                        </div>
-                                                    @endif
+                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                                                    <a style=" color: white" class="h6" href="{{ route('delete.test', $test) }}">Delete<i class="fa fa-edit ml-1"></i></a> 
+                                                                </button>
+                                                            </div>
+                                                        @endif
+                                                    @endauth
                                                 </div>
                                                 <ul>
                                                     <li><p>Article: {{$test->name}}</p></li>
@@ -181,17 +183,19 @@
                                                             <h5 class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$test->user->name}}</h5>
                                                         </a>
                                                     </div>
-                                                    @if ( $test->createdBy( Auth::user(), $test) )
-                                                        <div class="d-flex">
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                                                <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
-                                                            </button>
+                                                    @auth
+                                                        @if ( $test->createdBy( Auth::user(), $test) )
+                                                            <div class="d-flex">
+                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                                                    <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
+                                                                </button>
 
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                                                <a style=" color: white" class="h6" href="{{ route('delete.test', $test) }}">Delete<i class="fa fa-edit ml-1"></i></a> 
-                                                            </button>
-                                                        </div>
-                                                    @endif
+                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                                                    <a style=" color: white" class="h6" href="{{ route('delete.test', $test) }}">Delete<i class="fa fa-edit ml-1"></i></a> 
+                                                                </button>
+                                                            </div>
+                                                        @endif
+                                                    @endauth
                                                 </div>
                                                 <ul>
                                                     <li><p>Article: {{$test->name}}</p></li>
