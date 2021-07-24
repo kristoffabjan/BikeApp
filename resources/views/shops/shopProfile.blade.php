@@ -47,11 +47,33 @@
                     <div class="product-meta-data">
                         <div class="line"></div>
                         <p class="product-price">Bike shop</p> 
-                        <a href="product-details.html">
-                            <h6>{{$shop->name}}</h6>
-                        </a>
-                        <a href="{{route('profile.user', $shop->user)}}">
-                            <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$shop->user->name}}</p></a>
+                        <div class="d-flex">
+                            <div class="mr-auto">
+                                <a href="product-details.html">
+                                    <h6>{{$shop->name}}</h6>
+                                </a>
+                            </div>
+                            @auth
+                                @if ($shop->createdBy(Auth::user(), $shop))
+                                <div class="d-flex ">
+                                    <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                        <a style=" color: white" class="h6" href="{{route('edit.shop', $shop)}}">Edit<i class="fa fa-edit ml-1"></i></a> 
+                                    </button>
+
+                                    <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-3"> 
+                                        <a style=" color: white" class="h6" href="{{route('delete.shop', $shop)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
+                                    </button>
+                                </div>
+                                @endif
+                            @endauth
+                        </div>
+                        
+                        <div class="d-flex">
+                            <a href="{{route('profile.user', $shop->user)}}">
+                                <p class="avaibility mr-3"><i class="fa fa-user mr-1 " aria-hidden="true"></i>{{$shop->user->name}}</p>
+                            </a>
+                            <span class="text-secondary text-sm pt-1" style="font-size: medium;"> {{$shop->created_at->diffForHumans()}}</span>
+                        </div>
                         <!-- Ratings & Review -->
                         <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                             <div class="ratings">
@@ -59,14 +81,6 @@
                                     <b class="mr-2 mt-1"><span id=stars></span></b>
                                 </div>
                             </div>
-                            @auth
-                                @if ($shop->createdBy(Auth::user(), $shop))
-                                    <div class="review">
-                                        <a href="{{route('edit.shop', $shop)}}" class="text-success">Edit</a>
-                                        <a href="{{route('delete.shop', $shop)}}" class="text-danger">Delete</a>
-                                    </div>
-                                @endif
-                            @endauth
                         </div>
                         <!-- Avaiable -->
                         

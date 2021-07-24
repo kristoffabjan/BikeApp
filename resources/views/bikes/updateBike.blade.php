@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 d-flex-col">
+            <h2 class="mb-20 mt-30">Edit bike data:</h2>
             <div>
                 <form action="{{route('edit.bike.data', $bike)}}" method="post" enctype="multipart/form-data">
                     @csrf

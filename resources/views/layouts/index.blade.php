@@ -135,7 +135,7 @@
 
                     <!-- Cart Menu -->
                     <div class="cart-fav-search mb-30">
-                        <a id="navbarDropdown" class="nav-link " href="{{ route('profile.user', Auth::user()) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link " href="{{ route('profile.user', Auth::user() ) }}" >
                             {{ Auth::user()->name }}
                         </a>
 

@@ -46,9 +46,26 @@
                     <div class="product-meta-data">
                         <div class="line"></div>
                         <p class="product-price">from {{$bike->price}}€</p>
-                        <a href="product-details.html">
-                            <h6>{{$bike->brand}} {{$bike->model}} </h6>
-                        </a>
+                        <div class="d-flex">
+                            <div class=" mr-auto">
+                                <a href="product-details.html">
+                                    <h6><strong>{{$bike->brand}} {{$bike->model}} </strong></h6>
+                                </a>
+                            </div>
+                            @auth
+                                @if ($bike->createdBy(Auth::user(), $bike))
+                                <div class="d-flex ">
+                                    <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                        <a style=" color: white; " class="h5 pt-1 pl-1" href="{{route('edit.bike', $bike)}}">Edit<i class="fa fa-edit ml-1"></i></a> 
+                                    </button>
+
+                                    <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-3"> 
+                                        <a style=" color: white" class="h5 pt-1 pl-1" href="{{route('delete.bike', $bike)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
+                                    </button>
+                                </div>
+                                @endif
+                            @endauth
+                        </div>
                         <!-- Ratings & Review -->
                         <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                             <div class="ratings">
@@ -56,18 +73,12 @@
                                     <b class="mr-2 mt-1"><span id=stars></span></b>
                                 </div>
                             </div>
-                            @auth
-                                @if ($bike->createdBy(Auth::user(), $bike))
-                                    <div class="review">
-                                        <a href="{{route('edit.bike', $bike)}}" class="text-success">Edit</a>
-                                        <a href="{{route('delete.bike', $bike)}}" class="text-danger">Delete</a>
-                                    </div>
-                                @endif
-                            @endauth
+                           
                         </div>
                         <!-- Avaiable -->
                         <a href="{{route('profile.user', $bike->user)}}">
                         <p class="avaibility"><i class="fa fa-user pr-2" aria-hidden="true"></i>{{$bike->user->name}}</p></a>
+                        <span class="text-secondary text-sm" style="font-size: small;"> {{$bike->created_at->diffForHumans()}}</span>
                     </div>
 
                     
@@ -263,13 +274,13 @@
                                                     @endauth
                                                 </div>
                                                 
-                                                <h5 class="card-subtitle mb-2 text-muted">Overall rate:{{$rate->stars}}</h5>
+                                                <h5 class="card-subtitle mb-2 text-muted">Overall rate: {{$rate->stars}} <i class="fa fa-star"></i></h5>
                                                 <ul>
-                                                    <li><p>Price-performace: {{$rate->price_performance}}</p></li>
-                                                    <li><p>Descend: {{$rate->descend}}</p></li>
-                                                    <li><p>Ascend: {{$rate->ascend}}</p></li>
-                                                    <li><p>Agility: {{$rate->agility}}</p></li>
-                                                    <li><p>Opinion: {{$rate->opinion}}</p></li>
+                                                    <li><p>Price-performace: {{$rate->price_performance}} <i class="fa fa-star"></i></p></li>
+                                                    <li><p>Descend: {{$rate->descend}} <i class="fa fa-star"></i></p></li>
+                                                    <li><p>Ascend: {{$rate->ascend}} <i class="fa fa-star"></i></p></li>
+                                                    <li><p>Agility: {{$rate->agility}} <i class="fa fa-star"></i></p></li>
+                                                    <li><p>Opinion: {{$rate->opinion}} <i class="fa fa-star"></i></p></li>
                                                 </ul>
                                             </div>
                                         </div>
