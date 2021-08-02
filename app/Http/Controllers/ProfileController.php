@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeMail;
 use App\Models\Bike;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProfileController extends Controller
 {
@@ -77,5 +79,47 @@ class ProfileController extends Controller
     public function about()
     {
         return view('layouts.about');
+    }
+
+    public function send_welcome_mail1(Request $request)
+    {
+        #$order = Order::findOrFail($request->order_id);
+        $user = $request->user();
+        if ($user == null) {
+            dd($request->email);
+            try {
+                $new_mail = new WelcomeMail;
+                Mail::to($request->email)->send($new_mail->no_user());
+                echo 'Mail send successfully';
+                return redirect()->route('home');
+            } catch (\Exception $e) {
+                echo 'Error - '.$e;
+                return redirect()->route('home');
+            }
+        }else {
+            dd($$user);
+            return redirect()->route('home');
+        }
+        dd($user);
+        // Ship the order...
+
+        Mail::to($request->user())->send(new WelcomeMail($user));
+    }
+
+    public function send_welcome_mail(Request $request)
+    {
+        $user = $request->user();
+        if ($user == null) {
+            $new_mail = WelcomeMail::no_user();
+
+            Mail::to($request->email)->send($new_mail);
+            return redirect()->route('home');
+        }else {
+            $new_mail = WelcomeMail::user($user);
+
+            Mail::to($user->email)->send($new_mail);
+            return redirect()->route('home');
+        }
+        
     }
 }

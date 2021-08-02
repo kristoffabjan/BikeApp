@@ -38,6 +38,7 @@ Route::get('/about', [ProfileController::class, 'about'])->name('about');
 Route::get('/editUserProfile/{user}', [ProfileController::class, 'edit_profile'])->name('edit.user.profile');
 Route::post('/editUserProfileData/{user}', [ProfileController::class, 'edit_profile_data'])->name('edit.user.profile.data');
 Route::delete('/deleteUser/{user}', [ProfileController::class, 'destroy'])->name('delete.user');
+Route::get('/welcomeMail', [ProfileController::class, 'send_welcome_mail'])->name('mail.welcome');
 
 
 Route::get('/ratebike/{bike}',[BikeRateController::class, 'index'])->name('rate.bike');
