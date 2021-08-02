@@ -59,9 +59,11 @@
                                         <a style=" color: white; " class="h5 pt-1 pl-1" href="{{route('edit.bike', $bike)}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                     </button>
 
-                                    <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-3"> 
-                                        <a style=" color: white" class="h5 pt-1 pl-1" href="{{route('delete.bike', $bike)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
-                                    </button>
+                                    <form action="{{route('delete.bike', $bike)}}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input class="btn btn-dark btn-md mr-3" style="font-size: x-large" type="submit" value="Delete">
+                                    </form>
                                 </div>
                                 @endif
                             @endauth
@@ -148,7 +150,7 @@
             <div class="col mr-30">
                 @if ( $tests->count() > 0 )
                 <div class=" d-flex flex-column">
-                    <h2><strong>Reviews:</strong></h2>
+                    <h2><strong>{{ Str::plural('Review', count($tests)) }} </strong></h2>
                     <div id="product_details_slider2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
 
@@ -170,9 +172,11 @@
                                                                     <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                                 </button>
 
-                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                                                    <a style=" color: white" class="h6" href="{{ route('delete.test', $test) }}">Delete<i class="fa fa-edit ml-1"></i></a> 
-                                                                </button>
+                                                                <form action="{{route('delete.test', $test)}}" method="POST">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <input class="btn btn-dark btn-md mr-3" style="font-size: x-large" type="submit" value="Delete">
+                                                                </form>
                                                             </div>
                                                         @endif
                                                     @endauth
@@ -201,9 +205,11 @@
                                                                     <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                                 </button>
 
-                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                                                    <a style=" color: white" class="h6" href="{{ route('delete.test', $test) }}">Delete<i class="fa fa-edit ml-1"></i></a> 
-                                                                </button>
+                                                                <form action="{{route('delete.test', $test)}}" method="POST">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <input class="btn btn-dark btn-md mr-3" style="font-size: x-large" type="submit" value="Delete">
+                                                                </form>
                                                             </div>
                                                         @endif
                                                     @endauth
@@ -244,7 +250,7 @@
             <div class="col mr-30">
                 @if ( $rates->count() > 0 )
                 <div class="single_product_thumb d-flex flex-column">
-                    <h2><strong>Ratings:</strong></h2>
+                    <h2><strong>{{ Str::plural('Rating', count($rates)) }} </strong></h2>
                     <div id="product_details_slider1" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
 
@@ -266,9 +272,11 @@
                                                                 <a style=" color: white" class="h6" href="{{route('edit.bike.rate', [$rate, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                             </button>
 
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-3"> 
-                                                                <a style=" color: white" class="h6" href="{{route('destroy.bike.rate', $rate)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
-                                                            </button>
+                                                            <form action="{{route('destroy.bike.rate', $rate)}}" method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <input class="btn btn-dark btn-md mr-3" style="font-size: x-large" type="submit" value="Delete">
+                                                            </form>
                                                         </div>
                                                         @endif
                                                     @endauth
@@ -302,9 +310,11 @@
                                                                 <a style=" color: white" class="h6" href="{{route('edit.bike.rate', [$rate, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                             </button>
 
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-3"> 
-                                                                <a style=" color: white" class="h6" href="{{route('destroy.bike.rate', $rate)}}">Delete<i class="fa fa-times-circle ml-1"></i></a> 
-                                                            </button>
+                                                            <form action="{{route('destroy.bike.rate', $rate)}}" method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <input class="btn btn-dark btn-md mr-3" style="font-size: x-large" type="submit" value="Delete">
+                                                            </form>
                                                         </div>
                                                         @endif
                                                     @endauth

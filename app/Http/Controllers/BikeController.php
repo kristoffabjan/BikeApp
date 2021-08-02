@@ -102,13 +102,12 @@ class BikeController extends Controller
         $just_brands = $bikes_all->unique('brand');
         $brands = array();
 
-        #select just wanted brands
+        #select just wanted brands, array with brands selected in form on home page
         foreach ($request->all() as $key => $value) {
             if ($key > 0) {
                 array_push($brands, $value);
             }
         }
-
         #show all bikes if no brand is chosen
         #$bike_brands are bikes to be shown on home page
         if (count($brands) > 0) {
@@ -220,9 +219,7 @@ class BikeController extends Controller
         $deletedRows = Bike::where('id', $bike->id)->delete();
         $bikes = Bike::get();
 
-        return view('layouts.home',[
-            'bikes' => $bikes
-        ]);
+        return $this->index();
     }
 
     public function edit_form(Bike $bike)

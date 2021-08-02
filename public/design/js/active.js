@@ -73,6 +73,7 @@
             type: 'image'
         });
     }
+    
 
     // :: 7.0 Nicescroll Active Code
     if ($.fn.niceScroll) {

@@ -8,7 +8,14 @@
             <div class="bg-white shadow rounded overflow-hidden">
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="media align-items-end profile-head">
-                        <div class="profile mr-3"><img src="https://pointchurch.com/wp-content/uploads/2019/02/Blank-Person-Image.png" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
+                        <div class="profile mr-3">
+                            <img src="https://pointchurch.com/wp-content/uploads/2019/02/Blank-Person-Image.png" alt="..." width="130" class="rounded mb-2 img-thumbnail ">
+                            @auth
+                                @if ( Auth::user() == $user)
+                                    <a href="{{ route('edit.user.profile', Auth::user() ) }}" class="btn btn-outline-dark btn-sm btn-block mr-3">Edit profile</a>
+                                @endif
+                            @endauth
+                        </div>
                         <div class="media-body mb-5 text-white">
                             <h4 class="mt-0 mb-10" style="color: white">{{$user->name}}</h4>
                             <!-- <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p> -->

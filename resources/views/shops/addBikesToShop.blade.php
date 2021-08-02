@@ -4,6 +4,7 @@
 <div class="row ">
     <div class="col-md-12 d-flex-col mt-3">
         <h2>Add bikes that are currently available in your shop:</h2>
+        <a class="btn btn-primary btn-lg btn-dark mb-2 ml-2" href="{{ route('shop.profile', $shop) }}" role="button">Back to shop</a>
 
         @foreach ($bikes as $bike)
             <!-- do not show bikes that are already in shop-->
@@ -11,7 +12,7 @@
                 <div class="d-flex mb-4 pl-2 border border-dark rounded" >
                     <div class="mr-3">
                         <div class="user-avatar">
-                            <img class="img-thumbnail" style="max-width: 250px" src="/storage/bikes_profile_images/{{$bike->profile_image}}" alt="">
+                            <img class="img-thumbnail" style="max-width: 250px" src="{{$bike->profile_image}}" alt="">
                         </div>
                     </div>
                     <div class="d-flex-column">

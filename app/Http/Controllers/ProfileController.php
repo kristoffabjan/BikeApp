@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    #methon not in use
     public function showProfile(User $user){
         #dd($id);
         $nr_bikes = Bike::where('user_id', $user->id)->get()->count();
@@ -41,6 +42,36 @@ class ProfileController extends Controller
             'nr_bikes' => $nr_bikes,
             'nr_shops' => $nr_shops
         ]);
+    }
+
+    public function edit_profile(User $user)
+    {
+        return view('user.editUserProfile', [
+            'user' => $user
+        ]);
+    }
+
+    public function edit_profile_data(Request $request, User $user)
+    {
+        $data = $request->all();
+
+        foreach ($data as $key =>$value) {
+            if ($key != "_token") {
+                if ($value != null) {
+                    $affected = User::where('id', $user->id)
+                        ->update([$key => $value]);
+                }
+            }
+        }
+        
+        return $this->userProfile($user);
+    }
+
+    public function destroy(User $user)
+    {
+        
+        $user->delete();
+        return redirect()->route('home');
     }
 
     public function about()

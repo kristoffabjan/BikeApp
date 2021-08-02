@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-10">
+                                <div class="col-sm-10 ml-2">
                                     <button type="submit" class="btn amado-btn w-100">Add bike</button>
                                 </div>
                             </div>
