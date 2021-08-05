@@ -119,13 +119,10 @@
                                             <h3 class="pt-1">{{$shop->address}}</h3>
                                             <h4 class="pt-1">{{$shop->post}}</h4>
                                         </div>
-                                        <div>
-                                            <span class="text-dark text-md" style="font-size: medium;"> Price: {{$bike->price}}</span>
-                                        </div>
                                         <ul>
                                         <li> <strong>Phone number:</strong>  {{$shop->tel}}</li>
                                             <li> <strong>Email:</strong>  {{$shop->email}}</li>
-                                            <li><strong>Website:</strong> {{$bike->url}}</li>
+                                            <li><strong>Website:</strong> {{$shop->url}}</li>
                                         </ul>
 
                                         

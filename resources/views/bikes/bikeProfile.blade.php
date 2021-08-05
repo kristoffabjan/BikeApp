@@ -4,7 +4,7 @@
 <div class="single-product-area section-padding-100 clearfix">
     <div class="container-fluid">
 
-        <div class="row mb-3">
+        <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-7">   
                 <div class="single_product_thumb">
                     <div id="product_details_slider" class="carousel slide" data-ride="carousel">
@@ -14,13 +14,13 @@
                                 @if ($image == $images[0])
                                     <div class="carousel-item active">
                                         <a class="gallery_img" href="{{$image->path}}">
-                                            <img class="d-block w-100" src="{{$image->path}}" alt="First slide">
+                                            <img class="d-block w-100" style="max-height: 650px" src="{{$image->path}}" alt="First slide">
                                         </a>
                                     </div> 
                                 @else
                                 <div class="carousel-item ">
                                     <a class="gallery_img" href="{{$image->path}}">
-                                        <img class="d-block w-100" src="{{$image->path}}" alt="Non-first slide">
+                                        <img class="d-block w-100" style="max-height: 650px" src="{{$image->path}}" alt="Non-first slide">
                                     </a>
                                 </div> 
                                 @endif
@@ -45,7 +45,7 @@
                     <!-- Product Meta Data -->
                     <div class="product-meta-data">
                         <div class="line"></div>
-                        <p class="product-price">from {{$bike->price}}€</p>
+                        <p class="product-price p-2" ><span style="background-color: #3c3c3c; border-radius:15px" class="p-2">from {{$bike->price}}€</span></p>
                         <div class="d-flex">
                             <div class=" mr-auto">
                                 <a href="product-details.html">
@@ -54,9 +54,9 @@
                             </div>
                             @auth
                                 @if ($bike->createdBy(Auth::user(), $bike))
-                                <div class="d-flex ">
-                                    <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
-                                        <a style=" color: white; " class="h5 pt-1 pl-1" href="{{route('edit.bike', $bike)}}">Edit<i class="fa fa-edit ml-1"></i></a> 
+                                <div class="d-flex flex-wrap ml-auto">
+                                    <button  name="addtocart"  class="btn btn-dark btn-sm mr-2 ml-2 mb-2"> 
+                                        <a style=" color: white; " class="h5 pt-2" href="{{route('edit.bike', $bike)}}">Edit</a> 
                                     </button>
 
                                     <form action="{{route('delete.bike', $bike)}}" method="POST">
@@ -108,50 +108,55 @@
                         </div>
                     </div>
 
-                    <!-- Add to Cart Form -->
-                    <div class="short_overview my-5 d-flex flex-column">
-                       @auth
-                        <div class="d-flex">
-                            <form action="{{route('bikeImages', $bike->id)}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group d-flex flex-column">
-                                    <div class="col-sm-10">
-                                    <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                    @auth
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-wrap">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <form action="{{route('bikeImages', $bike->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group d-flex flex-column">
+                                        <div class="col-sm-10">
+                                        <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row ml-1">
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                    <div class="form-group row ml-1">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                            <button  name="addtocart"  class="btn amado-btn "><a style="font-size: x-large; color: white" href="{{route('new.test.form', $bike)}}">Add review</a></button>
+                                </form>
+                            </div>
+                            <div class="d-flex flex-column flex-wrap">
+                                <button  name="addtocart"  class="btn amado-btn ">
+                                    <a style="font-size: x-large; color: white" href="{{route('new.test.form', $bike)}}">Add review
+                                        <i class="fa fa-book"></i>
+                                    </a>
+                                </button>
+                            </div>
                         </div>
-                        @if (!$bike->createdBy(Auth::user(), $bike))
-                            @if (!$bike->hasRated(Auth::user()))
-                                <tr>
-                                    <td colspan="2">
-                                        <button  name="addtocart" style="font-size: x-large" value="5" class="btn amado-btn btn-lg btn-block"> 
-                                            <a style="font-size: x-large; color: white" href="{{route('rate.bike.open.form', $bike)}}">Rate bike <i class="fa fa-star"></i></a> 
-                                        </button>
-                                    </td>
-                                </tr>
+                        <div>
+                            @if (!$bike->createdBy(Auth::user(), $bike))
+                                @if (!$bike->hasRated(Auth::user()))
+                                    <button  name="addtocart" style="font-size: x-large" value="5" class="btn amado-btn btn-lg btn-block"> 
+                                        <a style="font-size: x-large; color: white" href="{{route('rate.bike.open.form', $bike)}}">Rate bike <i class="fa fa-star"></i></a> 
+                                    </button>
+                                @endif
                             @endif
-                        @endif
-                       @endauth
+                        </div>
                     </div>
+                    @endauth
                 </div>
             </div>
         </div>
         
         
                 
-        <div class="row ">
-            <div class="col mr-30">
+        <div class="row d-flex flew-wrap ">
+            <div class="col mr-30 mb-3">
                 @if ( $tests->count() > 0 )
                 <div class=" d-flex flex-column">
-                    <h2><strong>{{ Str::plural('Review', count($tests)) }} </strong></h2>
-                    <div id="product_details_slider2" class="carousel slide" data-ride="carousel">
+                    <h2><strong>{{ Str::plural('Review', count($tests)) }}: </strong></h2>
+                    <div id="product_details_slider2" class="carousel slide" style="min-width: 350px" data-ride="carousel">
                         <div class="carousel-inner">
 
                             @foreach ($tests as $test)
@@ -167,15 +172,15 @@
                                                     </div>
                                                     @auth
                                                         @if ( $test->createdBy( Auth::user(), $test) )
-                                                            <div class="d-flex">
-                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                                            <div class="d-flex flex-wrap">
+                                                                <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2 mb-2"> 
                                                                     <a style=" color: white" class="h6" href="{{route('edit.test.form', [$test, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                                 </button>
 
                                                                 <form action="{{route('delete.test', $test)}}" method="POST">
                                                                     @method('DELETE')
                                                                     @csrf
-                                                                    <input class="btn btn-dark btn-md mr-3" style="font-size: x-large" type="submit" value="Delete">
+                                                                    <input class="btn btn-dark btn-md mr-3" style="font-size: large" type="submit" value="Delete">
                                                                 </form>
                                                             </div>
                                                         @endif
@@ -247,11 +252,11 @@
                 @endif
             </div>
 
-            <div class="col mr-30">
+            <div class="col mr-30 ">
                 @if ( $rates->count() > 0 )
-                <div class="single_product_thumb d-flex flex-column">
-                    <h2><strong>{{ Str::plural('Rating', count($rates)) }} </strong></h2>
-                    <div id="product_details_slider1" class="carousel slide" data-ride="carousel">
+                <div class="single_product_thumb d-flex flex-column mb-3">
+                    <h2><strong>{{ Str::plural('Rating', count($rates)) }}: </strong></h2>
+                    <div id="product_details_slider1" class="carousel slide " style="min-width: 350px"  data-ride="carousel">
                         <div class="carousel-inner">
 
                             @foreach ($rates as $rate)
@@ -267,8 +272,8 @@
                                                     </div>
                                                     @auth
                                                         @if ($rate->createdBy(Auth::user(), $rate))
-                                                        <div class="d-flex ">
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2"> 
+                                                        <div class="d-flex flex-wrap">
+                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr- mb-2"> 
                                                                 <a style=" color: white" class="h6" href="{{route('edit.bike.rate', [$rate, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                             </button>
 
@@ -348,7 +353,7 @@
                     </div>
                 </div>
                 @else
-                    <div class="single_product_thumb d-flex flex-column">
+                    <div class="single_product_thumb d-flex flex-column mb-3">
                         <h2><strong>Rates:</strong></h2>
                         <h5>
                             No rates yet
@@ -357,11 +362,11 @@
                 @endif
             </div>
 
-            <div class="col">
+            <div class="col mb-3">
                 @if ( $shops->count() > 0)
-                <div class="single_product_thumb d-flex flex-column">
+                <div class="single_product_thumb d-flex flex-column mb-3">
                     <h2><strong>Available at:</strong></h2>
-                    <div id="product_details_slider3" class="carousel slide" data-ride="carousel">
+                    <div id="product_details_slider3" class="carousel slide" style="min-width: 350px"  data-ride="carousel">
                         <div class="carousel-inner">
 
                             @foreach ($shops as $shop)

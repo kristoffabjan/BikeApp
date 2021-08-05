@@ -14,13 +14,13 @@
                                 @if ($image == $images[0])
                                     <div class="carousel-item active">
                                         <a class="gallery_img" href="{{$image->path}}">
-                                            <img class="d-block w-100" src="{{$image->path}}" alt="First slide">
+                                            <img class="d-block w-100" style="max-height: 650px" src="{{$image->path}}" alt="First slide">
                                         </a>
                                     </div> 
                                 @else
                                 <div class="carousel-item ">
                                     <a class="gallery_img" href="{{$image->path}}">
-                                        <img class="d-block w-100" src="{{$image->path}}" alt="Non-first slide">
+                                        <img class="d-block w-100" style="max-height: 650px" src="{{$image->path}}" alt="Non-first slide">
                                     </a>
                                 </div> 
                                 @endif
@@ -49,7 +49,7 @@
                         <p class="product-price">Bike shop</p> 
                         <div class="d-flex">
                             <div class="mr-auto">
-                                <a href="product-details.html">
+                                <a href="#">
                                     <h6>{{$shop->name}}</h6>
                                 </a>
                             </div>
@@ -102,59 +102,49 @@
                     </div>
 
                     <!-- Add to Cart Form -->
-                        
-
-                        <table class="table">
-                            @auth
-                                <thead>
-                                <tr>
-                                    <th scope="col">
-                                        <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-group d-flex flex-column">
-                                                <div class="col-sm-10">
-                                                <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
-                                                </div>
-                                            </div>
-                                            <div class="form-group row ml-1">
-                                                <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-primary btn-dark">Add images</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </th>
-                                    @if ($shop->createdBy(Auth::user(), $shop))
-                                        <th scope="col">
-                                            <h3>Add bikes to shop:</h3>
-                                            <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
-                                        </th>
-                                    @endif
-                                </tr>
-                                </thead>
-                            @endauth    
-                            <tbody>
-                                @auth
-                                    @if (!$shop->createdBy(Auth::user(), $shop))
-                                        @if (!$shop->hasRated(Auth::user()))
-                                            <tr>
-                                                <td colspan="2">
-                                                    <button  name="addtocart" style="font-size: x-large" value="5" class="btn amado-btn btn-lg btn-block"> 
-                                                        <a style="font-size: x-large; color: white" href="{{route('rate.shop.open.form', $shop)}}">Rate Shop <i class="fa fa-star"></i></a> 
-                                                        <!-- -->
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endif
-                                @endauth
-                            </tbody>
-                          </table>
-
+                    @auth
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-wrap">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <form action="{{route('shopImages', $shop->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group d-flex flex-column">
+                                        <div class="col-sm-10">
+                                        <input type="file" class="form" id="bike_images" name="images[]"  placeholder="Images" multiple >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-1">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary btn-dark">Add images</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="d-flex flex-column flex-wrap">
+                                @if ($shop->createdBy(Auth::user(), $shop))
+                                    <h3>Add bikes to shop:</h3>
+                                    <a class="btn btn-dark btn-lg " href="{{route('bikeToShop', $shop)}}"  role="button">Add</a>
+                                @endif
+                            </div>
+                        </div>
+                        <div>
+                            @if (!$shop->createdBy(Auth::user(), $shop))
+                                @if (!$shop->hasRated(Auth::user()))
+                                    <button  name="addtocart" style="font-size: x-large" value="5" class="btn amado-btn btn-lg btn-block"> 
+                                        <a style="font-size: x-large; color: white" href="{{route('rate.shop.open.form', $shop)}}">Rate Shop <i class="fa fa-star"></i>
+                                        </a> 
+                                        <!-- -->
+                                    </button>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+                    @endauth
                 </div>
             </div>
         </div>
         
-        <div class="row p-2" style="border: 3px solid #fbb710; border-radius: 25px">
+        <div class="row p-2 ml-2" style="border: 3px solid #fbb710; border-radius: 25px">
             <div class="col-12 col-md-8">
                 <h2 class="mt-3"> {{ Str::plural('Bike', count($bikes_at_shop)) }} currently available at this shop:</h2>
                     @if ( count($bikes_at_shop) > 0)
@@ -162,13 +152,13 @@
                         <h3><strong>{{count($bikes_at_shop)}} {{ Str::plural('bike', count($bikes_at_shop) )  }} </strong> currently available</h3>
                         @foreach ($bikes_at_shop as $bike)
                         <!-- $bike lists entries from bikeAtShop table, bike is a relation, that each bikeAtShop entry belongs to certain bike -->
-                            <div class="d-flex mb-4 pl-2 border border-dark rounded">
-                                <div class="mr-3">
+                            <div class="d-flex mb-4 flex-wrap pl-2 border border-dark rounded p-2" style="background-color: #fbb710">
+                                <div class="mr-2">
                                     <div class="user-avatar">
                                         <img class="img-thumbnail" style="max-width: 250px" src="{{$bike->bike->profile_image}}" alt="">
                                     </div>
                                 </div>
-                                <div class="d-flex-column">
+                                <div class="d-flex flex-column">
                                     <div class="pt-2 pb-2">
                                         <a href="{{route('profile.user', $bike->bike->user)}}" class="font-weight-bold text-dark mb-2 mr-2">Added by: {{$bike->bike->user->name}}</a>
                                     </div>
@@ -182,8 +172,8 @@
                                     </div>
                                 </div>
                                 <div class="ml-auto d-flex justify-content-center align-items-center mr-4">
-                                    <button  name="addtocart" style="font-size: x-large; border-radious:25px" value="5" class="btn amado-btn btn-lg mr-3"> 
-                                        <a style="font-size: x-large; color: white" href="{{route('rate.bike', $bike->bike->id)}}">Go to bike <i class="fa fa-bicycle"></i></a> 
+                                    <button  name="addtocart" id="go_to_store"  value="5" class="btn amado-btn btn-lg mr-3"> 
+                                        <a style="font-size: x-large; color:white " href="{{route('rate.bike', $bike->bike->id)}}">Go to bike <i class="fa fa-bicycle"></i></a> 
                                     </button>
                                     @auth
                                         @if ($shop->createdBy(Auth::user(), $shop))

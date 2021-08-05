@@ -95,7 +95,7 @@
                 </div>
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ asset('design/img/core-img/chain.png') }}" alt=""></a>
+                    <a class="pt-2 pb-2" href="{{ route('home') }}"><img src="{{ asset('design/img/core-img/chain.png') }}"  alt=""></a>
                 </div>
                 <div>
                     <h2>BikeFinderApp</h2>

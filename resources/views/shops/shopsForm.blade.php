@@ -38,7 +38,7 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn amado-btn w-100">Add Shop</button>
+                                    <button type="submit" class="btn amado-btn w-100 ml-2">Add Shop</button>
                                 </div>
                             </div>
 

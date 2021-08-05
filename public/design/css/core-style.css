@@ -322,6 +322,23 @@ img {
     color: #ffffff;
     background-color: #131212; }
 
+#go_to_store {
+  display: inline-block;
+  min-width: 160px;
+  height: 55px;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 0 7px;
+  font-size: 18px;
+  line-height: 56px;
+  background-color: #302a2a;
+  font-weight: 400; }
+  #go_to_store.active, #go_to_store:hover, #go_to_store:focus {
+    font-size: 18px;
+    color: #fbb710;
+    background-color: #312e2e; }
+
 /* :: 4.0 Search Wrapper Area CSS */
 .search-wrapper {
   position: fixed;
@@ -447,7 +464,7 @@ img {
       .main-content-wrapper .header-area .nav-close:hover {
         background-color: #131212; }
     .main-content-wrapper .header-area .logo {
-      margin-bottom: 100px;
+      margin-bottom: 50px;
       display: block; }
     .main-content-wrapper .header-area .amado-nav li a {
       font-size: 14px;
