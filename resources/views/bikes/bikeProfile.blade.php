@@ -273,7 +273,7 @@
                                                     @auth
                                                         @if ($rate->createdBy(Auth::user(), $rate))
                                                         <div class="d-flex flex-wrap">
-                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr- mb-2"> 
+                                                            <button  name="addtocart"  value="5" class="btn btn-dark btn-md mr-2 mb-2"> 
                                                                 <a style=" color: white" class="h6" href="{{route('edit.bike.rate', [$rate, $bike])}}">Edit<i class="fa fa-edit ml-1"></i></a> 
                                                             </button>
 
